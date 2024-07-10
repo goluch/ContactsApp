@@ -18,11 +18,11 @@ namespace Application.Contacts.Commands.CreateContact
         public DateOnly BirthDate { get; init; }
     }
 
-    public class CreateTodoItemCommandHandler : IRequestHandler<CreateContractCommand, Guid>
+    public class CreateContractCommandHandler : IRequestHandler<CreateContractCommand, Guid>
     {
         private readonly IApplicationDbContext _context;
 
-        public CreateTodoItemCommandHandler(IApplicationDbContext context)
+        public CreateContractCommandHandler(IApplicationDbContext context)
         {
             _context = context;
         }
