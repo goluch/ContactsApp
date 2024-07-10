@@ -1,4 +1,4 @@
-﻿namespace Domain.Enums
+﻿namespace ContactsApp.Domain.Enums
 {
     public enum Category
     {

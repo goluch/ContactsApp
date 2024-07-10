@@ -1,6 +1,4 @@
-﻿using Domain.Enums;
-
-namespace Domain.Entities
+﻿namespace ContactsApp.Domain.Entities
 {
     public class Contact
     {
