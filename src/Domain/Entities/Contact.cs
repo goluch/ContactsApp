@@ -1,6 +1,6 @@
 ﻿using Domain.Enums;
 
-namespace Domain
+namespace Domain.Entities
 {
     public class Contact
     {
@@ -10,5 +10,7 @@ namespace Domain
         public string Email { get; set; }
         public string Password { get; set; }
         public Category Categoty { get; set; }
+        public int PhoneNumber { get; set; }
+        public DateOnly BirthDate { get; set; }
     }
 }
