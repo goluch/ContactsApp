@@ -1,6 +1,6 @@
 ﻿namespace Domain.Enums
 {
-    public enum SubCategory
+    public enum Subcategory
     {
         None = 0,
         Boss,
