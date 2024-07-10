@@ -1,8 +1,9 @@
-﻿namespace ContactsApp.Domain.Entities
+﻿using ContactsApp.Domain.Common;
+
+namespace ContactsApp.Domain.Entities
 {
-    public class Contact
+    public class Contact : BaseEntity<Guid>
     {
-        public Guid Id { get; set; }
         public string Forename { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
