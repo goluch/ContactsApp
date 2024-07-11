@@ -1,6 +1,8 @@
 ﻿using Application.Common.Interfaces;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using WebApp.Infrastructure;
+using WebApp.Services;
 
 namespace Microsoft.Extensions.DependencyInjection
 {
@@ -10,16 +12,15 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            //services.AddScoped<IUser, CurrentUser>();
+            services.AddScoped<IUser, CurrentUser>();
 
             services.AddHttpContextAccessor();
 
-            //services.AddHealthChecks()
-            //    .AddDbContextCheck<ApplicationDbContext>();
+            services.AddHealthChecks()
+                .AddDbContextCheck<ApplicationDbContext>();
 
-            //services.AddExceptionHandler<CustomExceptionHandler>();
+            services.AddExceptionHandler<CustomExceptionHandler>();
 
-            services.AddRazorPages();
 
             // Customise default API behaviour
             services.Configure<ApiBehaviorOptions>(options =>

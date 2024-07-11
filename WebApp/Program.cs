@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using WebApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -8,7 +9,6 @@ builder.Services.AddWebServices();
 
 // Add services to the container.
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
@@ -27,8 +27,11 @@ else
     app.UseHsts();
 }
 
-app.UseSwagger();
-app.UseSwaggerUI();
+app.UseSwaggerUi(settings =>
+{
+    settings.Path = "/swagger";
+    settings.DocumentPath = "/swagger/specification.json";
+});
 
 app.UseHttpsRedirection();
 
@@ -37,5 +40,7 @@ app.UseAuthorization();
 app.UseRouting();
 
 app.MapFallbackToFile("/index.html");
+
+app.MapEndpoints();
 
 app.Run();
