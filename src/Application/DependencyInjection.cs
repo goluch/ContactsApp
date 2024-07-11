@@ -1,5 +1,4 @@
 ﻿using Application.Common.Behaviours;
-using Mapster;
 using System.Reflection;
 
 namespace Microsoft.Extensions.DependencyInjection
@@ -8,7 +7,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddMapster();
+            services.AddAutoMapper(Assembly.GetExecutingAssembly());
 
             services.AddMediatR(cfg =>
             {
