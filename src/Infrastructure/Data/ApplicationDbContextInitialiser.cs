@@ -1,8 +1,7 @@
-﻿using Application.Constants;
+﻿using Domain.Constants;
 using Domain.Entities;
 using Domain.Enums;
 using Infrastructure.Identity;
-using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

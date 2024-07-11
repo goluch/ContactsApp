@@ -2,8 +2,11 @@ using Microsoft.AspNetCore.Builder;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddApplicationServices();
+builder.Services.AddInfrastructureServices(builder.Configuration);
+builder.Services.AddWebServices();
+
 // Add services to the container.
-builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
@@ -32,7 +35,6 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseRouting();
-app.MapControllers();
 
 app.MapFallbackToFile("/index.html");
 
