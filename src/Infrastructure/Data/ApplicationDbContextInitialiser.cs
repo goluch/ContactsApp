@@ -1,6 +1,6 @@
 ﻿using Application.Constants;
-using ContactsApp.Domain.Entities;
-using ContactsApp.Domain.Enums;
+using Domain.Entities;
+using Domain.Enums;
 using Infrastructure.Identity;
 using MediatR;
 using Microsoft.AspNetCore.Builder;

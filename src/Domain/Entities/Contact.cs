@@ -1,6 +1,6 @@
-﻿using ContactsApp.Domain.Common;
+﻿using Domain.Common;
 
-namespace ContactsApp.Domain.Entities
+namespace Domain.Entities
 {
     public class Contact : BaseEntity<Guid>
     {

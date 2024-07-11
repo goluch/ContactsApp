@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
-using ContactsApp.Domain.Entities;
-using ContactsApp.Domain.Enums;
+using Domain.Entities;
+using Domain.Enums;
 using Domain.Events;
 
 namespace Application.Contacts.Commands.CreateContact

@@ -1,4 +1,4 @@
-﻿using ContactsApp.Domain.Entities;
+﻿using Domain.Entities;
 
 namespace Application.Common.Interfaces
 {

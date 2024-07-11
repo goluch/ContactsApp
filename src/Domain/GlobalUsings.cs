@@ -1,2 +1,2 @@
-﻿global using ContactsApp.Domain.Entities;
-global using ContactsApp.Domain.Enums;
+﻿global using Domain.Entities;
+global using Domain.Enums;
