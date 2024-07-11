@@ -3,6 +3,9 @@ using WebApp.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add services to the container.
+builder.Services.AddKeyVaultIfConfigured(builder.Configuration);
+
 builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebServices();
@@ -29,15 +32,19 @@ else
 
 app.UseSwaggerUi(settings =>
 {
-    settings.Path = "/swagger";
-    settings.DocumentPath = "/swagger/specification.json";
+    settings.Path = "/api";
+    settings.DocumentPath = "/api/specification.json";
 });
 
 app.UseHttpsRedirection();
 
-app.UseAuthorization();
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller}/{action=Index}/{id?}");
 
-app.UseRouting();
+//app.UseAuthorization();
+
+//app.UseRouting();
 
 app.MapFallbackToFile("/index.html");
 

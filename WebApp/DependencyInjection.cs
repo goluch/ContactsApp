@@ -1,4 +1,5 @@
 ﻿using Application.Common.Interfaces;
+using Azure.Identity;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using WebApp.Infrastructure;
@@ -27,6 +28,25 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.SuppressModelStateInvalidFilter = true);
 
             services.AddEndpointsApiExplorer();
+
+            services.AddOpenApiDocument((configure, sp) =>
+            {
+                configure.Title = "ContactsApp API";
+
+            });
+
+            return services;
+        }
+
+        public static IServiceCollection AddKeyVaultIfConfigured(this IServiceCollection services, ConfigurationManager configuration)
+        {
+            var keyVaultUri = configuration["KeyVaultUri"];
+            if (!string.IsNullOrWhiteSpace(keyVaultUri))
+            {
+                configuration.AddAzureKeyVault(
+                    new Uri(keyVaultUri),
+                    new DefaultAzureCredential());
+            }
 
             return services;
         }
