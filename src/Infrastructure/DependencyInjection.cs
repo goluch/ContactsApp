@@ -68,6 +68,7 @@ public static class DependencyInjection
                 c.EnableFilter();
                 c.EnableDeepLinking();
             });
+            
             //app.UseCors(x => x
             //    .AllowCredentials()
             //    .WithOrigins("http://localhost:4200")

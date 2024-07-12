@@ -3,6 +3,7 @@ using Azure.Identity;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
+using WebApp.Endpoints;
 using WebApp.Infrastructure;
 using WebApp.Services;
 
@@ -41,12 +42,8 @@ namespace Microsoft.Extensions.DependencyInjection
 
         public static void UseWebAppServices(this WebApplication app)
         {
-            //app.UseHttpsRedirection();
-
-            //app.UseAuthorization();
-
-            //app.UseRouting();
-
+            app.MapEndpoints();
+            app.UseContactsEndpoints();
             app.MapFallbackToFile("/index.html");
         }
 

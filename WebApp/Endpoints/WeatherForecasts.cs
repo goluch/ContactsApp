@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using WebApp.Infrastructure;
+using WebApp.Swagger;
 
 namespace WebApp.Endpoints
 {
