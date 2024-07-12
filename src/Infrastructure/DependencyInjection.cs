@@ -28,6 +28,9 @@ public static class DependencyInjection
             options.UseSqlite(connectionString);
         });
 
+        services.AddHealthChecks()
+            .AddDbContextCheck<ApplicationDbContext>();
+
         services.AddScoped<IApplicationDbContext>(provider => provider.GetRequiredService<ApplicationDbContext>());
         services.AddScoped<ApplicationDbContextInitialiser>();
 

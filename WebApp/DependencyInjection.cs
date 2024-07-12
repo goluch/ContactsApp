@@ -1,8 +1,6 @@
-﻿using Application.Common.Behaviours;
-using Application.Common.Interfaces;
+﻿using Application.Common.Interfaces;
 using Azure.Identity;
 using Infrastructure.Data;
-using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
 using WebApp.Infrastructure;
@@ -28,9 +26,6 @@ namespace Microsoft.Extensions.DependencyInjection
             services.AddScoped<IUser, CurrentUser>();
 
             services.AddHttpContextAccessor();
-
-            services.AddHealthChecks()
-                .AddDbContextCheck<ApplicationDbContext>();
 
             services.AddExceptionHandler<CustomExceptionHandler>();
 
