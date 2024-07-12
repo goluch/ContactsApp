@@ -8,7 +8,7 @@ import HelloWorld from './components/Contacts.vue'
     </header>
     <main>
         <div class="wrapper">
-            <HelloWorld msg="See You Contacts" />
+            <HelloWorld msg="See Your Contacts" />
         </div>
     </main>
 </template>
