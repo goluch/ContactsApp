@@ -83,7 +83,7 @@ public static class DependencyInjection
         app.UseAntiforgery();
 
         app.MapControllers();
-        app.MapIdentityApi<IdentityUser>();
+        app.MapIdentityApi<ApplicationUser>();
     }
 
 }
