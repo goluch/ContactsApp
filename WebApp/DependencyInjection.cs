@@ -12,8 +12,11 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class DependencyInjection
     {
-        public static IServiceCollection AddWebServices(this IServiceCollection services)
+        public static IServiceCollection AddWebAppServices(this IServiceCollection services, ConfigurationManager configuration)
         {
+
+            services.AddKeyVaultIfConfigured(configuration);
+
             //To usunąć z Weather forecatem
             services.AddMediatR(cfg =>
             {
@@ -38,13 +41,18 @@ namespace Microsoft.Extensions.DependencyInjection
 
             services.AddEndpointsApiExplorer();
 
-            services.AddOpenApiDocument((configure, sp) =>
-            {
-                configure.Title = "ContactsApp API";
-
-            });
-
             return services;
+        }
+
+        public static void UseWebAppServices(this WebApplication app)
+        {
+            //app.UseHttpsRedirection();
+
+            //app.UseAuthorization();
+
+            //app.UseRouting();
+
+            app.MapFallbackToFile("/index.html");
         }
 
         public static IServiceCollection AddKeyVaultIfConfigured(this IServiceCollection services, ConfigurationManager configuration)
