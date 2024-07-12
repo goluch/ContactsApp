@@ -1,7 +1,10 @@
-﻿using Application.Common.Interfaces;
+﻿using Application.Common.Behaviours;
+using Application.Common.Interfaces;
 using Azure.Identity;
 using Infrastructure.Data;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection;
 using WebApp.Infrastructure;
 using WebApp.Services;
 
@@ -11,6 +14,12 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddWebServices(this IServiceCollection services)
         {
+            //To usunąć z Weather forecatem
+            services.AddMediatR(cfg =>
+            {
+                cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+            });
+
             services.AddDatabaseDeveloperPageExceptionFilter();
 
             services.AddScoped<IUser, CurrentUser>();

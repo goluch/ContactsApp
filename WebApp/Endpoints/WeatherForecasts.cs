@@ -19,7 +19,7 @@ namespace WebApp.Endpoints
         public override void Map(WebApplication app)
         {
             app.MapGroup(this)
-                .RequireAuthorization()
+                //.RequireAuthorization()
                 .MapGet(GetWeatherForecasts);
         }
 
