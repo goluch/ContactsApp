@@ -7,6 +7,10 @@ using System.Reflection;
 
 namespace Infrastructure.Data
 {
+    //EF tools commands:
+    //Add-Migration InitialCreate -Project Infrastructure
+    //Update-Database
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
