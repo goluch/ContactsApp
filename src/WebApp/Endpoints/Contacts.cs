@@ -1,6 +1,7 @@
 ﻿using Application.Common.Models;
 using Application.Contacts.Commands.CreateContact;
 using Application.Contacts.Commands.DeleteContact;
+using Application.Contacts.Commands.Update;
 using Application.Contacts.Queries;
 using Application.Contacts.Queries.GetContactsWithPagination;
 using Domain.Entities;
@@ -18,6 +19,7 @@ namespace WebApp.Endpoints
                 .MapGet(GetContactsWithPagination)
                 //.MapGet(GetContacts, "all")
                 .MapPost(CreateContact)
+                .MapPut(UpdateContact, "{id}")
                 .MapDelete(DeleteContact, "{id}"); ;
         }
 
@@ -34,6 +36,13 @@ namespace WebApp.Endpoints
         public Task<int> CreateContact(ISender sender, CreateContactCommand command)
         {
             return sender.Send(command);
+        }
+
+        public async Task<IResult> UpdateContact(ISender sender, int id, UpdateContactCommand command)
+        {
+            if (id != command.Id) return Results.BadRequest();
+            await sender.Send(command);
+            return Results.NoContent();
         }
 
         public async Task<IResult> DeleteContact(ISender sender, int id)
