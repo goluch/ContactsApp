@@ -1,4 +1,6 @@
-﻿namespace Domain.Entities
+﻿using Domain.Exceptions;
+
+namespace Domain.Entities
 {
     public class Category : ValueObject
     {
@@ -19,6 +21,14 @@
             }
 
             if (categoryName == Private)
+            {
+                if (!string.IsNullOrWhiteSpace(subcategoryName))
+                {
+                    throw new InvalidSubcategoryNameException(categoryName, subcategoryName);
+                }
+            }
+
+            if (categoryName == Business)
             {
                 if (!SupportedSubcategoryNames.Contains(subcategoryName))
                 {
