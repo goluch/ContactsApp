@@ -44,7 +44,6 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             app.MapEndpoints();
             //app.UseContactsEndpoints();
-            app.UseWeatherForecastEndpoints();
             app.MapFallbackToFile("/index.html");
         }
 
