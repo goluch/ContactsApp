@@ -1,6 +1,5 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
-using Domain.Enums;
 using Domain.Events;
 
 namespace Application.Contacts.Commands.CreateContact
@@ -37,7 +36,6 @@ namespace Application.Contacts.Commands.CreateContact
                 Email = request.Email,
                 Password = request.Password,
                 Category = request.Category,
-                Subcategory = request.Subcategory,
                 PhoneNumber = request.PhoneNumber,
                 BirthDate = request.BirthDate,
             };

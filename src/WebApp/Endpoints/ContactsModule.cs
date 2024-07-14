@@ -13,16 +13,16 @@ namespace WebApp.Endpoints
 
         private static void AddContactsEndpoints(this IEndpointRouteBuilder app)
         {
-            app.MapGet("/GetContacts", async (
-                        [FromQuery] int pageSize,
-                        [FromQuery] int pageNumber,
-                        [FromQuery] bool? desc,
-                        ISender sender,
-                        CancellationToken ct
-                    ) =>
-                    Results.Ok(await sender.Send(new GetContactsQuery(pageNumber, pageSize, desc ?? true), ct)))
-                //.RequireAuthorization(Permission.ProjectRead.ToString())
-                .WithTags(SwaggerSetup.ContactsTag);
+            //app.MapGet("/GetContacts", async (
+            //            [FromQuery] int pageSize,
+            //            [FromQuery] int pageNumber,
+            //            [FromQuery] bool? desc,
+            //            ISender sender,
+            //            CancellationToken ct
+            //        ) =>
+            //        Results.Ok(await sender.Send(new GetContactsWithPaginationQuery(pageNumber, pageSize, desc ?? true), ct)))
+            //    //.RequireAuthorization(Permission.ProjectRead.ToString())
+            //    .WithTags(SwaggerSetup.ContactsTag);
 
             app.MapGet("/GetContactsWithPagination", async (
                         ISender sender,

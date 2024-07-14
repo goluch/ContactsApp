@@ -1,6 +1,5 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
-using Domain.Enums;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;
@@ -97,8 +96,7 @@ namespace Infrastructure.Data
                     Surname = "Goluch",
                     Email = "tomasz.goluch@gmail.com",
                     Password = "mojeHaslo",
-                    Category = Category.Private,
-                    Subcategory = null,
+                    Category = new Category("Business", "Boss"),
                     PhoneNumber = 791152365,
                     BirthDate = new DateOnly(1974, 09, 08)
                 });

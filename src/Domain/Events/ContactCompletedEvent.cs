@@ -2,9 +2,9 @@
 
 namespace Domain.Events
 {
-    public class ContactDeletedEvent : BaseEvent
+    public class ContactCompletedEvent : BaseEvent
     {
-        public ContactDeletedEvent(Contact item)
+        public ContactCompletedEvent(Contact item)
         {
             Item = item;
         }

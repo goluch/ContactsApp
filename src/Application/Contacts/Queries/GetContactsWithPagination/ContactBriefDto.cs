@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Domain.Enums;
 
 namespace Application.Contacts.Queries.GetContactsWithPagination
 {
