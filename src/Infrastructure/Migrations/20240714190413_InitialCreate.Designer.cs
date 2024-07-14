@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240714154307_InitialCreate")]
+    [Migration("20240714190413_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -19,6 +19,25 @@ namespace Infrastructure.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
+
+            modelBuilder.Entity("Domain.Entities.Category", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("SubcategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Category");
+                });
 
             modelBuilder.Entity("Domain.Entities.Contact", b =>
                 {
@@ -29,7 +48,7 @@ namespace Infrastructure.Migrations
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Category")
+                    b.Property<int>("CategoryId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
@@ -47,15 +66,13 @@ namespace Infrastructure.Migrations
                     b.Property<int>("PhoneNumber")
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Subcategory")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
-
                     b.Property<string>("Surname")
                         .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CategoryId");
 
                     b.ToTable("Contacts");
                 });
@@ -250,6 +267,17 @@ namespace Infrastructure.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
+                });
+
+            modelBuilder.Entity("Domain.Entities.Contact", b =>
+                {
+                    b.HasOne("Domain.Entities.Category", "Category")
+                        .WithMany()
+                        .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Category");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

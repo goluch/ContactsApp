@@ -1,6 +1,6 @@
 ﻿namespace CleanApp.Domain.Entities
 {
-    public class Address : ValueObject
+    public class Address : BaseValueObject<int>
     {
         public String Street { get; private set; }
         public String City { get; private set; }

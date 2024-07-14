@@ -2,8 +2,9 @@
 
 namespace Domain.Entities
 {
-    public class Category : ValueObject
+    public class Category : BaseValueObject<int>
     {
+
         public String CategoryName { get; private set; }
         public String SubcategoryName { get; private set; }
 

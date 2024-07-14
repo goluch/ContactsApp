@@ -1,7 +1,7 @@
 ﻿using Application.Common.QueryParameters;
 using Application.DTO.Contacts;
 
-namespace Application.Contacts.Queries
+namespace Application.Contacts.Queries.Get
 {
     public sealed class GetContactsQuery(int pageNumber, int pageSize, bool desc, bool onlyActive = true)
         : IRequest<GetContactsDto>

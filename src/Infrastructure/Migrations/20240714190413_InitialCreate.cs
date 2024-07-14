@@ -51,23 +51,17 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Contacts",
+                name: "Category",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Forename = table.Column<string>(type: "TEXT", nullable: false),
-                    Surname = table.Column<string>(type: "TEXT", nullable: false),
-                    Email = table.Column<string>(type: "TEXT", nullable: false),
-                    Password = table.Column<string>(type: "TEXT", nullable: false),
-                    Category = table.Column<int>(type: "INTEGER", nullable: false),
-                    Subcategory = table.Column<string>(type: "TEXT", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "INTEGER", nullable: false),
-                    BirthDate = table.Column<DateOnly>(type: "TEXT", nullable: false)
+                    CategoryName = table.Column<string>(type: "TEXT", nullable: false),
+                    SubcategoryName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                    table.PrimaryKey("PK_Category", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,6 +170,31 @@ namespace Infrastructure.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Contacts",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Forename = table.Column<string>(type: "TEXT", nullable: false),
+                    Surname = table.Column<string>(type: "TEXT", nullable: false),
+                    Email = table.Column<string>(type: "TEXT", nullable: false),
+                    Password = table.Column<string>(type: "TEXT", nullable: false),
+                    CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
+                    PhoneNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    BirthDate = table.Column<DateOnly>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contacts", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Contacts_Category_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Category",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -212,6 +231,11 @@ namespace Infrastructure.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_CategoryId",
+                table: "Contacts",
+                column: "CategoryId");
         }
 
         /// <inheritdoc />
@@ -240,6 +264,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "Category");
         }
     }
 }
