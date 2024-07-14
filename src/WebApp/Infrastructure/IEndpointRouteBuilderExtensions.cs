@@ -9,6 +9,8 @@ namespace WebApp.Infrastructure
         {
             Guard.Against.AnonymousMethod(handler);
 
+            pattern = (pattern == "") ? handler.Method.Name : handler.Method.Name + "/" + pattern;
+
             builder.MapGet(pattern, handler)
                 .WithName(handler.Method.Name);
 

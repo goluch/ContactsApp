@@ -43,7 +43,7 @@ namespace Microsoft.Extensions.DependencyInjection
         public static void UseWebAppServices(this WebApplication app)
         {
             app.MapEndpoints();
-            app.UseContactsEndpoints();
+            //app.UseContactsEndpoints();
             app.UseWeatherForecastEndpoints();
             app.MapFallbackToFile("/index.html");
         }

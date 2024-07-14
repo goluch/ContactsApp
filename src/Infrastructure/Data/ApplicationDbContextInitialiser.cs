@@ -89,9 +89,9 @@ namespace Infrastructure.Data
 
             // Default data
             // Seed, if necessary
-            if (!_context.ContactsList.Any())
+            if (!_context.Contacts.Any())
             {
-                _context.ContactsList.Add(new Contact
+                _context.Contacts.Add(new Contact
                 {
                     Forename = "Tomasz",
                     Surname = "Goluch",

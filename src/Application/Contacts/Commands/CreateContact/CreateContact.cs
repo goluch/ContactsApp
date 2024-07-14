@@ -5,9 +5,9 @@ using Domain.Events;
 
 namespace Application.Contacts.Commands.CreateContact
 {
-    public record CreateContractCommand : IRequest<Guid>
+    public record CreateContactCommand : IRequest<int>
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public string Forename { get; init; }
         public string Surname { get; init; }
         public string Email { get; init; }
@@ -18,7 +18,7 @@ namespace Application.Contacts.Commands.CreateContact
         public DateOnly BirthDate { get; init; }
     }
 
-    public class CreateContractCommandHandler : IRequestHandler<CreateContractCommand, Guid>
+    public class CreateContractCommandHandler : IRequestHandler<CreateContactCommand, int>
     {
         private readonly IApplicationDbContext _context;
 
@@ -27,7 +27,7 @@ namespace Application.Contacts.Commands.CreateContact
             _context = context;
         }
 
-        public async Task<Guid> Handle(CreateContractCommand request, CancellationToken cancellationToken)
+        public async Task<int> Handle(CreateContactCommand request, CancellationToken cancellationToken)
         {
             var entity = new Contact
             {
@@ -44,7 +44,7 @@ namespace Application.Contacts.Commands.CreateContact
 
             entity.AddDomainEvent(new ContactCreatedEvent(entity));
 
-            _context.ContactsList.Add(entity);
+            _context.Contacts.Add(entity);
 
             await _context.SaveChangesAsync(cancellationToken);
 

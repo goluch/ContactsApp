@@ -19,9 +19,9 @@ namespace Infrastructure.Migrations
 
             modelBuilder.Entity("Domain.Entities.Contact", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateOnly>("BirthDate")
                         .HasColumnType("TEXT");
@@ -54,7 +54,7 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactsList");
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Infrastructure.Identity.ApplicationUser", b =>
