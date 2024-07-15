@@ -99,7 +99,7 @@ namespace Infrastructure.Data
                     Email = "tomasz.goluch@gmail.com",
                     Password = "mojeHaslo",
                     Category = new Category("Business", "Client"),
-                    PhoneNumber = 791152365,
+                    PhoneNumber = "+48791152365",
                     BirthDate = new DateOnly(1974, 09, 08)
                 });
                 _context.Contacts.Add(new Contact
@@ -110,7 +110,7 @@ namespace Infrastructure.Data
                     Email = "jacek.placek@gmail.com",
                     Password = "jackaHaslo",
                     Category = new Category("Business", "Boss"),
-                    PhoneNumber = 999999999,
+                    PhoneNumber = "+48999999999",
                     BirthDate = new DateOnly(1981, 03, 02)
                 });
                 await _context.SaveChangesAsync();

@@ -13,7 +13,7 @@ namespace Application.Contacts.Commands.CreateContact
         public string Email { get; init; }
         public string Password { get; init; }
         public Category Category { get; init; }
-        public int PhoneNumber { get; init; }
+        public string PhoneNumber { get; init; }
         public DateOnly BirthDate { get; init; }
     }
 

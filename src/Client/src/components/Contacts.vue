@@ -10,18 +10,26 @@
             <table>
                 <thead>
                     <tr>
-                        <th>Date</th>
-                        <th>Temp. (C)</th>
-                        <th>Temp. (F)</th>
-                        <th>Summary</th>
+                        <th>Forename</th>
+                        <th>Surname</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Category</th>
+                        <th>Subcategory</th>
+                        <th>Phone Number</th>
+                        <th>Birth Date</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="forecast in post" :key="forecast.date">
-                        <td>{{ forecast.date }}</td>
-                        <td>{{ forecast.temperatureC }}</td>
-                        <td>{{ forecast.temperatureF }}</td>
-                        <td>{{ forecast.summary }}</td>
+                    <tr v-for="contact in post" :key="contact.id">
+                        <td>{{ contact.forename }}</td>
+                        <td>{{ contact.surname }}</td>
+                        <td>{{ contact.email }}</td>
+                        <td>{{ contact.password }}</td>
+                        <td>{{ contact.category.categoryName }}</td>
+                        <td>{{ contact.category.subcategoryName }}</td>
+                        <td>{{ contact.phoneNumber }}</td>
+                        <td>{{ contact.birthDate }}</td>
                     </tr>
                 </tbody>
             </table>
@@ -32,16 +40,25 @@
 <script lang="ts">
     import { defineComponent } from 'vue';
 
-    type Forecasts = {
-        date: string,
-        temperatureC: string,
-        temperatureF: string,
-        summary: string
+    type Category = {
+        id: int
+        categoryName: string,
+        subcategoryName: string
+    }
+
+    type Contacts = {
+        forename: string,
+        surname: string,
+        email: string,
+        password: string,
+        category: Category,
+        phoneNumber: string,
+        password: birthDate
     }[];
 
     interface Data {
         loading: boolean,
-        post: null | Forecasts
+        post: null | Contacts
     }
 
     export default defineComponent({
@@ -65,10 +82,10 @@
                 this.post = null;
                 this.loading = true;
 
-                fetch('weatherforecast')
+                fetch('GetContacts')
                     .then(r => r.json())
                     .then(json => {
-                        this.post = json as Forecasts;
+                        this.post = json as Contacts;
                         this.loading = false;
                         return;
                     });

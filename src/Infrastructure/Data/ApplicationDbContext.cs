@@ -7,10 +7,10 @@ using System.Reflection;
 
 namespace Infrastructure.Data
 {
-    //EF tools commands:
-    //Add-Migration InitialCreate  -Project Infrastructure
-    //Update-Database
-    //Drop-Database  -Project WebApp
+    //EF tools commands (set WebApp as startup project):
+    //Add-Migration InitialCreate -Project Infrastructure
+    //Update-Database  -Project Infrastructure
+    //Drop-Database -Project WebApp
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>, IApplicationDbContext
     {

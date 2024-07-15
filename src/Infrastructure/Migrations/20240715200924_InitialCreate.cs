@@ -181,7 +181,7 @@ namespace Infrastructure.Migrations
                     Email = table.Column<string>(type: "TEXT", nullable: false),
                     Password = table.Column<string>(type: "TEXT", nullable: false),
                     CategoryId = table.Column<int>(type: "INTEGER", nullable: false),
-                    PhoneNumber = table.Column<int>(type: "INTEGER", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "TEXT", nullable: false),
                     BirthDate = table.Column<DateOnly>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
