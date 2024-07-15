@@ -2,16 +2,15 @@
 using Domain.Entities;
 using Domain.ValueObjects;
 
-namespace Application.Contacts.Queries.GetContactsWithPagination
+namespace Application.Contacts.Queries.Get
 {
-    public class ContactBriefDto
+    public class ContactDto
     {
         public string Forename { get; set; }
         public string Surname { get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
         public Category Category { get; set; }
-        public string Subcategory { get; set; }
         public int PhoneNumber { get; set; }
         public DateOnly BirthDate { get; set; }
 
@@ -19,7 +18,7 @@ namespace Application.Contacts.Queries.GetContactsWithPagination
         {
             public Mapping()
             {
-                CreateMap<Contact, ContactBriefDto>();
+                CreateMap<Contact, ContactDto>();
             }
         }
     }

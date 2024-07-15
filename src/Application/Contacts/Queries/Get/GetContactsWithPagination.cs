@@ -1,10 +1,11 @@
 ﻿using Application.Common.Interfaces;
 using Application.Common.Models;
+using Application.Contacts.Queries.Get;
 using AutoMapper;
 
 namespace Application.Contacts.Queries.GetContactsWithPagination
 {
-    public record GetContactsWithPaginationQuery : IRequest<PaginatedList<ContactBriefDto>>
+    public record GetContactsWithPaginationQuery : IRequest<PaginatedList<ContactDto>>
     {
         public int ListId { get; init; }
         public int PageNumber { get; init; } = 1;

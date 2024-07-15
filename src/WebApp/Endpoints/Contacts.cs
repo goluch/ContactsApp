@@ -3,8 +3,8 @@ using Application.Contacts.Commands.CreateContact;
 using Application.Contacts.Commands.DeleteContact;
 using Application.Contacts.Commands.Update;
 using Application.Contacts.Queries;
+using Application.Contacts.Queries.Get;
 using Application.Contacts.Queries.GetContactsWithPagination;
-using Domain.Entities;
 using MediatR;
 using WebApp.Infrastructure;
 
@@ -16,22 +16,22 @@ namespace WebApp.Endpoints
         {
             app.MapGroup(this)
                 //.RequireAuthorization()
-                .MapGet(GetContactsWithPagination)
-                //.MapGet(GetContacts, "all")
+                //.MapGet(GetContactsWithPagination)
+                .MapGet(GetContacts)
                 .MapPost(CreateContact)
                 .MapPut(UpdateContact, "{id}")
                 .MapDelete(DeleteContact, "{id}"); ;
         }
 
-        public Task<PaginatedList<ContactBriefDto>> GetContactsWithPagination(ISender sender, [AsParameters] GetContactsWithPaginationQuery query)
+        public Task<PaginatedList<ContactDto>> GetContactsWithPagination(ISender sender, [AsParameters] GetContactsWithPaginationQuery query)
         {
             return sender.Send(query);
         }
 
-        //public Task<Contact> GetContacts(ISender sender)
-        //{
-        //    return sender.Send(new GetContactsQuery());
-        //}
+        public Task<IEnumerable<ContactDto>> GetContacts(ISender sender)
+        {
+            return sender.Send(new GetContactsQuery());
+        }
 
         public Task<int> CreateContact(ISender sender, CreateContactCommand command)
         {
