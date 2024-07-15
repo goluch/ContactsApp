@@ -1,5 +1,6 @@
 ﻿using Domain.Constants;
 using Domain.Entities;
+using Domain.ValueObjects;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Identity;

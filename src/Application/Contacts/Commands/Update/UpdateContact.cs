@@ -1,6 +1,6 @@
 ﻿using Application.Common.Interfaces;
 using Ardalis.GuardClauses;
-using Domain.Entities;
+using Domain.ValueObjects;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Application.Contacts.Commands.Update

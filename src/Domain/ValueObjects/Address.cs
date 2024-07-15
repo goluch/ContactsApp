@@ -1,12 +1,12 @@
-﻿namespace CleanApp.Domain.Entities
+﻿namespace Domain.ValueObjects
 {
     public class Address : BaseValueObject<int>
     {
-        public String Street { get; private set; }
-        public String City { get; private set; }
-        public String Voivodeship { get; private set; }
-        public String Country { get; private set; }
-        public String ZipCode { get; private set; }
+        public string Street { get; private set; }
+        public string City { get; private set; }
+        public string Voivodeship { get; private set; }
+        public string Country { get; private set; }
+        public string ZipCode { get; private set; }
 
         public Address() { }
 

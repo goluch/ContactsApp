@@ -1,6 +1,7 @@
 ﻿using Application.Common.Interfaces;
 using Domain.Entities;
 using Domain.Events;
+using Domain.ValueObjects;
 
 namespace Application.Contacts.Commands.CreateContact
 {

@@ -1,4 +1,4 @@
-﻿using CleanApp.Domain.Entities;
+﻿using Domain.ValueObjects;
 
 namespace Domain.Entities
 {

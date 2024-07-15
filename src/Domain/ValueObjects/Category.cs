@@ -1,12 +1,12 @@
 ﻿using Domain.Exceptions;
 
-namespace Domain.Entities
+namespace Domain.ValueObjects
 {
     public class Category : BaseValueObject<int>
     {
 
-        public String CategoryName { get; private set; }
-        public String SubcategoryName { get; private set; }
+        public string CategoryName { get; private set; }
+        public string SubcategoryName { get; private set; }
 
 
         public Category(string categoryName, string subcategoryName)
@@ -45,7 +45,7 @@ namespace Domain.Entities
         public static string Private => "Private";
         public static string Other => "Other";
 
-        protected static IEnumerable<String> SupportedCategoryNames
+        protected static IEnumerable<string> SupportedCategoryNames
         {
             get
             {
@@ -58,7 +58,7 @@ namespace Domain.Entities
         public static string Boss => "Boss";
         public static string Client => "Client";
 
-        protected static IEnumerable<String> SupportedSubcategoryNames
+        protected static IEnumerable<string> SupportedSubcategoryNames
         {
             get
             {
