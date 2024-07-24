@@ -9,25 +9,33 @@
 
 <script>
     import { useStore } from 'vuex'
-    import { key } from './store'
+    import { key } from '../store'
 
     export default {
         methods: {
-            // setup () {
-            //    const store = useStore(key)
-            //    store.state.loggedIn
-            //}
-            fetchUsers() {
-                //this.$store.commit('setLoading', true);
-                //this.$store.commit('setAllDisplaysNull');
-                fetch('/api/Contacts/GetContacts')
+            setup () {
+                const store = useStore(key)
+                store.state.loggedIn
+            },
+            fetchContacts() {
+                //this.$store.commit('setLoading', true)
+                this.$store.commit('setAllDisplaysNull')
+                fetch('GetContacts')
                     .then(r => r.json())
                     .then(json => {
-                        //this.$store.commit('setUsersList', json);
-                        //this.$store.commit('setLoading', false);
+                        this.$store.commit('setUsersList', json)
+                        this.$store.commit('setLoading', false)
                         return;
-                    });
-            }
+                    })
+            },
+            loginTrigger() {
+               this.$store.commit('setAllDisplaysNull')
+               this.$store.commit('setLoginMode', true)
+            },
+            logout() {
+               this.$store.commit('setAllDisplaysNull')
+               this.$store.commit('setLoggedIn', false)
+            },
         }
     }
 </script>

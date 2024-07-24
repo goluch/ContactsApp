@@ -9,7 +9,7 @@ import HelloWorld from './components/Contacts.vue'
     <app-menu/>
     <main>
         <div class="wrapper">
-            <HelloWorld msg="See Your Contacts" />
+            <HelloWorld msg="See your contacts" />
         </div>
     </main>
 </template>
