@@ -21,8 +21,8 @@
  
         setup() {
             const columns = ref([
-                { label: 'Forename', field: 'Forename' },
-                { label: 'Surname', field: 'Surname' },
+                { label: 'Forename', field: 'forename' },
+                { label: 'Surname', field: 'surname' },
             ]);
  
             return {
