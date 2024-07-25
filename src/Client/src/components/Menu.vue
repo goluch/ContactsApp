@@ -1,13 +1,14 @@
 <template>
     <div class="sidebar">
-        <a v-on:click="fetchContacts">Contacts list</a>
+        <a v-if="!$store.state.loggedIn" v-on:click="registerTrigger" data-cy="cy-login">Register</a>
         <a v-if="!$store.state.loggedIn" v-on:click="loginTrigger" data-cy="cy-login">Login</a>
+        <a v-on:click="fetchContacts">Contacts list</a>
         <hr />
         <a v-if="$store.state.loggedIn" v-on:click="logout" data-cy="cy-logout">Logout</a>
     </div>
 </template>
 
-<script>
+<script lang="ts">
     import { useStore } from 'vuex'
     import { key } from '../store'
 
@@ -27,6 +28,10 @@
                         this.$store.commit('setLoading', false)
                         return;
                     })
+            },
+            registerTrigger() {
+                this.$store.commit('setAllDisplaysNull')
+                this.$store.commit('setRegistrationMode', true)
             },
             loginTrigger() {
                this.$store.commit('setAllDisplaysNull')
@@ -76,11 +81,6 @@
             color: white;
             height: 10px;
         }
-
-    .active {
-        background-color: green;
-        color: white;
-    }
 
     .active {
         background-color: green;

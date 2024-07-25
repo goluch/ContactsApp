@@ -3,9 +3,9 @@
 </script>
 
 <template>
-    <div v-if="$store.state.loginMode">
-        <h2>Login:</h2>
-        <form @submit.prevent="login">
+    <div v-if="$store.state.registrationMode">
+        <h2>Register:</h2>
+        <form @submit.prevent="regiser">
             <div class="mb-3">
                 <label for="useremail">User email:</label>
                 <input data-cy="useremail" type="text" class="form-control" v-model="useremail" required/>
@@ -14,7 +14,7 @@
                 <label for="password">Password:</label>
                 <input data-cy="password" type="password" class="form-control" v-model="password" required/>
             </div>
-            <button data-cy="submit" type="submit" class="btn btn-primary">Login</button>
+            <button data-cy="submit" type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
 </template>
@@ -28,11 +28,11 @@
             };
         },
         methods: {
-            login() {
+            regiser() {
                 this.$store.commit('setLoading', true);
                 this.$store.commit('setAllDisplaysNull');
 
-                const url = 'login';
+                const url = 'register';
                 let email = this.useremail;
                 let passwd = this.password;
 
@@ -44,25 +44,21 @@
                     headers: {'Content-Type':'application/json'},
                     body: JSON.stringify({       
                         email: email.toLowerCase(),      
-                        password: passwd,
-                        twoFactorCode: "",
-                        twoFactorRecoveryCode: ""
-                        }), 
+                        password: passwd }), 
                     })
                 .then(response => {
                     this.$store.commit('setLoading', false);
                     if (!response.ok) {
-                        this.$store.commit('setMsg', 'Failed to login ' + email);
+                        this.$store.commit('setMsg', 'Failed to register ' + email);
                         return response.json();
                     }
                     else
                     {
-                        this.$store.commit('setMsg', 'Login succeed for ' + email);
-                        return response.json();
+                        this.$store.commit('setMsg', 'Registration succeed for ' + email);
+                        return;
                     }
                 })
                 .then(json => {
-                    this.$store.commit('setLoggedIn', json);
                     this.$store.commit('setLoading', false);
                     this.$store.commit('addMsg', ', JSON responce: ' + JSON.stringify(json));
                 })

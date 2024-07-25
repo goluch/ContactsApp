@@ -31,7 +31,7 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
 }
 
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
-    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7047/api/Contacts';
+    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:7047';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -43,8 +43,16 @@ export default defineConfig({
     },
     server: {
         proxy: {
-            '^/GetContacts': {
+            '^/register': {
                 target,
+                secure: false
+            },
+            '^/login': {
+                target,
+                secure: false
+            },
+            '^/GetContacts': {
+                target: target + "/api/Contacts",
                 secure: false
             }
         },

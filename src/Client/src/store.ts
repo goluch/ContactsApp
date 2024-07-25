@@ -6,7 +6,9 @@ export interface State {
     contactsList: any
     loading: boolean
     loggedIn: boolean
+    registrationMode: boolean
     loginMode: boolean
+    msg: string,
 }
 
 // define injection key
@@ -16,12 +18,15 @@ export const store = createStore<State>({
     state: {
         loading: false,
         loggedIn: false,
-        loginMode: false,
+        loginMode: true,
+        registrationMode: false,
+        msg: "",
     },
     mutations: {
         setAllDisplaysNull(state: State) {
-            state.loggedIn = false
+            state.registrationMode = false
             state.loginMode = false
+            state.msg = "";
         },
         setContactsList(state: State, value: any) {
             state.contactsList = value;
@@ -32,8 +37,17 @@ export const store = createStore<State>({
         setloggedIne(state: State, value: boolean) {
             state.loggedIn = value;
         },
+        setRegistrationMode(state: State, value: boolean) {
+            state.registrationMode = value;
+        },
         setLoginMode(state: State, value: boolean) {
             state.loginMode = value;
+        },
+        setMsg(state: State, value: string) {
+            state.msg = value;
+        },
+        addMsg(state: State, value: string) {
+            state.msg += value;
         },
     },
 })
