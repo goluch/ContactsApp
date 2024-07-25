@@ -64,6 +64,7 @@
                 .then(json => {
                     this.$store.commit('setLoggedIn', json);
                     this.$store.commit('setLoading', false);
+                    this.$store.commit('setloggedIn', true);
                     this.$store.commit('addMsg', ', JSON responce: ' + JSON.stringify(json));
                 })
             }

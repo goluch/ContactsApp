@@ -38,7 +38,7 @@ export const store = createStore<State>({
         setLoading(state: State, value: boolean) {
             state.loading = value;
         },
-        setloggedIne(state: State, value: boolean) {
+        setloggedIn(state: State, value: boolean) {
             state.loggedIn = value;
         },
         setRegistrationMode(state: State, value: boolean) {
