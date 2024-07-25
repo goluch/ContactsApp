@@ -14,6 +14,43 @@ import HelloWorld from './components/Contacts.vue'
     </main>
 </template>
 
+<script lang="ts">
+    import { useToast } from "vue-toastification";
+    import { defineComponent } from 'vue';
+    export default defineComponent({
+        setup() {
+            const toast = useToast()
+            return { toast }
+        },
+        data() {
+            return {
+                darkMode: false,
+            }
+        },
+
+        methods: {
+            toggleMode() {
+                this.darkMode = !this.darkMode;
+                this.toast(this.darkMode ? "Dark mode enabled" : "Light mode enabled", {
+                    position: "top-right",
+                    timeout: 5000,
+                    closeOnClick: true,
+                    pauseOnFocusLoss: true,
+                    pauseOnHover: true,
+                    draggable: true,
+                    draggablePercent: 0.6,
+                    showCloseButtonOnHover: false,
+                    hideProgressBar: true,
+                    closeButton: "button",
+                    icon: "fas fa-rocket",
+                    rtl: false
+                });
+            },
+        }
+    })
+</script>
+
+
 <style scoped>
 header {
   line-height: 1.5;
