@@ -9,7 +9,7 @@ import 'vue-toastification/dist/index.css'
 import App from './App.vue'
 
 import Menu from '@/components/Menu.vue'
-import RegistrForm from '@/components/RegistrForm.vue'
+import RegistrForm from '@/components/RegisterForm.vue'
 import LoginForm from '@/components/LoginForm.vue'
 import Contacts from '@/components/Contacts.vue'
 

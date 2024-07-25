@@ -26,6 +26,7 @@
                     .then(json => {
                         this.$store.commit('setContactsList', json)
                         this.$store.commit('setLoading', false)
+                        this.$store.commit('setContactsMode', true)
                         return;
                     })
             },

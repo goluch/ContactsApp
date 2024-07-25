@@ -29,6 +29,7 @@ export const store = createStore<State>({
         setAllDisplaysNull(state: State) {
             state.registrationMode = false
             state.loginMode = false
+            state.contactsMode = false
             state.msg = "";
         },
         setContactsList(state: State, value: any) {
