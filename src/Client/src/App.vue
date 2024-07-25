@@ -11,6 +11,7 @@
         <Contacts msg="See your contacts" />
         <app-registr />
         <app-login />
+        <app-contacts/>
     </main>
 </template>
 

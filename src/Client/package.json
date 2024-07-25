@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "vue": "^3.4.29",
+    "vue-good-table-next": "^0.2.1",
     "vuex": "^4.0.2"
   },
   "devDependencies": {

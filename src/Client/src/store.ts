@@ -8,6 +8,7 @@ export interface State {
     loggedIn: boolean
     registrationMode: boolean
     loginMode: boolean
+    contactsMode: boolean
     msg: string,
 }
 
@@ -16,10 +17,12 @@ export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
     state: {
+        contactsList: null,
         loading: false,
         loggedIn: false,
-        loginMode: true,
         registrationMode: false,
+        loginMode: false,
+        contactsMode: true,
         msg: "",
     },
     mutations: {
@@ -42,6 +45,9 @@ export const store = createStore<State>({
         },
         setLoginMode(state: State, value: boolean) {
             state.loginMode = value;
+        },
+        setContactsMode(state: State, value: boolean) {
+            state.contactsMode = value;
         },
         setMsg(state: State, value: string) {
             state.msg = value;

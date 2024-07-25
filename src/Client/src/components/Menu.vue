@@ -19,12 +19,12 @@
                 store.state.loggedIn
             },
             fetchContacts() {
-                //this.$store.commit('setLoading', true)
+                this.$store.commit('setLoading', true)
                 this.$store.commit('setAllDisplaysNull')
                 fetch('GetContacts')
                     .then(r => r.json())
                     .then(json => {
-                        this.$store.commit('setUsersList', json)
+                        this.$store.commit('setContactsList', json)
                         this.$store.commit('setLoading', false)
                         return;
                     })
@@ -41,6 +41,17 @@
                this.$store.commit('setAllDisplaysNull')
                this.$store.commit('setLoggedIn', false)
             },
+            getFormattedDate() {
+                const today = new Date();
+                const year = today.getFullYear();
+                let month = today.getMonth() + 1;
+                let day = today.getDate();
+
+                month = month < 10 ? `0${month}` : month;
+                day = day < 10 ? `0${day}` : day;
+
+                return `${year}-${month}-${day}`;
+            }
         }
     }
 </script>
