@@ -4,11 +4,15 @@
         <vue-good-table :columns="columns" :rows="this.$store.state.contactsList">
             <template #table-row="props">
                 <span v-if="props.column.field == 'action'">
-                    <button v-on:click="showContactDetails(props.row.forename, props.row.stopDesc)"
+                    <button v-on:click="showContactDetails(props.row.forename)"
                             class="btn btn-primary">
                         Show details
                     </button>
                     <br />
+                    <button v-if="this.$store.state.loggedIn" v-on:click="addContact(props.row.forename)"
+                            class="btn btn-primary mt-2">
+                        Add
+                    </button>
                     <button v-if="this.$store.state.loggedIn" v-on:click="editContact(props.row.forename)"
                             class="btn btn-primary mt-2">
                         Edit
@@ -24,8 +28,8 @@
 </template>
 
 <script lang="ts">
-    import { ref } from 'vue';
-    import { VueGoodTable } from 'vue-good-table-next';
+    import { ref } from 'vue'
+    import { VueGoodTable } from 'vue-good-table-next'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     export default {
         props: ['Forename'],
@@ -44,7 +48,22 @@
             return {
                 columns,
             };
+        },
+        methods: {
+            showContactDetails(forename) {
+               //this.selectedStopName = stopDesc;
+               this.$store.commit('setLoading', true)
+               this.$store.commit('setAllDisplaysNull')
+               //fetch('stopinfo/' + stopID)
+               //    .then(r => r.json())
+               //    .then(json => {
+               //        this.$store.commit('setStopInfo', json);
+               //        this.$store.commit('setLoading', false);
+                       return;
+               //    });
+            },
         }
+
     }
 </script>
 
