@@ -1,13 +1,12 @@
+import 'bootstrap/dist/css/bootstrap.css'
+import 'bootstrap-vue/dist/bootstrap-vue.css'
 import './assets/main.css'
-
 import { createApp } from 'vue'
 import { store, key } from './store'
 import { useToast } from 'vue-toastification'
 const toast = useToast()
 import 'vue-toastification/dist/index.css'
-
 import App from './App.vue'
-
 import Menu from '@/components/Menu.vue'
 import RegistrForm from '@/components/RegisterForm.vue'
 import LoginForm from '@/components/LoginForm.vue'

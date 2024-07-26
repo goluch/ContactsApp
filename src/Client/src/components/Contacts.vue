@@ -8,20 +8,19 @@
                             class="btn btn-primary">
                         Show details
                     </button>
-                    <br />
                     <button v-if="this.$store.state.loggedIn" v-on:click="showContactEdit(props.row.originalIndex)"
-                            class="btn btn-primary mt-2">
+                            class="btn btn-warning">
                         Edit
                     </button>
-                    <button v-if="this.$store.state.loggedIn" v-on:click="showContactDelte(props.row.originalIndex)"
-                            class="btn btn-primary mt-2">
+                    <button v-if="this.$store.state.loggedIn" v-on:click="showContactDelete(props.row.originalIndex)"
+                            class="btn btn-danger">
                         Delete
                     </button>
                 </span>
             </template>
         </vue-good-table>
         <button v-if="this.$store.state.loggedIn" v-on:click="showContactAdd()"
-                class="btn btn-primary mt-2">
+                class="btn btn-success">
             Add new
         </button>
     </div>
@@ -73,7 +72,7 @@
                 this.$store.commit('setContactsEdit', true)
                 return
             },
-            showContactDelte(id) {
+            showContactDelete(id) {
                 this.selectedContact = this.$store.state.contactsList[id];
                 this.$store.commit('setAllDisplaysNull')
                 this.$store.commit('setContactsDelete', true)
