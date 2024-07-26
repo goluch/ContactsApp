@@ -9,7 +9,7 @@
                         Show details
                     </button>
                     <button v-if="this.$store.state.loggedIn" v-on:click="showContactEdit(props.row.originalIndex)"
-                            class="btn btn-warning">
+                            class="btn btn-info">
                         Edit
                     </button>
                     <button v-if="this.$store.state.loggedIn" v-on:click="showContactDelete(props.row.originalIndex)"
