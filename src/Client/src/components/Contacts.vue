@@ -9,22 +9,26 @@
                         Show details
                     </button>
                     <br />
-                    <button v-if="this.$store.state.loggedIn" v-on:click="addContact(props.row.originalIndex)"
-                            class="btn btn-primary mt-2">
-                        Add
-                    </button>
-                    <button v-if="this.$store.state.loggedIn" v-on:click="editContact(props.row.originalIndex)"
+                    <button v-if="this.$store.state.loggedIn" v-on:click="showContactEdit(props.row.originalIndex)"
                             class="btn btn-primary mt-2">
                         Edit
                     </button>
-                    <button v-if="this.$store.state.loggedIn" v-on:click="deleteContact(props.row.originalIndex)"
+                    <button v-if="this.$store.state.loggedIn" v-on:click="showContactDelte(props.row.originalIndex)"
                             class="btn btn-primary mt-2">
                         Delete
                     </button>
                 </span>
             </template>
         </vue-good-table>
+        <button v-if="this.$store.state.loggedIn" v-on:click="showContactAdd()"
+                class="btn btn-primary mt-2">
+            Add new
+        </button>
     </div>
+    <app-contacts-add />
+    <app-contacts-details v-bind:contact="selectedContact" />
+    <app-contacts-edit v-bind:contact="selectedContact" />
+    <app-contacts-delete v-bind:contact="selectedContact" />
 </template>
 
 <script lang="ts">
@@ -32,12 +36,14 @@
     import { VueGoodTable } from 'vue-good-table-next'
     import 'vue-good-table-next/dist/vue-good-table-next.css'
     export default {
-        props: ['Forename'],
- 
         components: {
             VueGoodTable,
         },
- 
+        data() {
+            return {
+                selectedContact: null,
+            };
+        },
         setup() {
             const columns = ref([
                 { label: 'Forename', field: 'forename' },
@@ -50,20 +56,30 @@
             };
         },
         methods: {
-            showContactDetails(forename) {
-               //this.selectedStopName = stopDesc;
-               this.$store.commit('setLoading', true)
-               this.$store.commit('setAllDisplaysNull')
-               //fetch('stopinfo/' + stopID)
-               //    .then(r => r.json())
-               //    .then(json => {
-               //        this.$store.commit('setStopInfo', json);
-               //        this.$store.commit('setLoading', false);
-                       return;
-               //    });
+            showContactDetails(id) {
+                this.selectedContact = this.$store.state.contactsList[id];
+                this.$store.commit('setAllDisplaysNull')
+                this.$store.commit('setContactsDetails', true)
+                return
+            },
+            showContactAdd() {
+                this.$store.commit('setAllDisplaysNull')
+                this.$store.commit('setContactsAdd', true)
+                return
+            },
+            showContactEdit(id) {
+                this.selectedContact = this.$store.state.contactsList[id];
+                this.$store.commit('setAllDisplaysNull')
+                this.$store.commit('setContactsEdit', true)
+                return
+            },
+            showContactDelte(id) {
+                this.selectedContact = this.$store.state.contactsList[id];
+                this.$store.commit('setAllDisplaysNull')
+                this.$store.commit('setContactsDelete', true)
+                return
             },
         }
-
     }
 </script>
 

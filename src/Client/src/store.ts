@@ -9,6 +9,10 @@ export interface State {
     registrationMode: boolean
     loginMode: boolean
     contactsMode: boolean
+    contactDetails: boolean
+    contactAdd: boolean
+    contactEdit: boolean
+    contactDelete: boolean
     msg: string,
 }
 
@@ -23,6 +27,10 @@ export const store = createStore<State>({
         registrationMode: false,
         loginMode: false,
         contactsMode: true,
+        contactcontactDetails: false,
+        contactcontactAdd: false,
+        contactcontactedit: false,
+        contactcontactDelete: false,
         msg: "",
     },
     mutations: {
@@ -30,6 +38,10 @@ export const store = createStore<State>({
             state.registrationMode = false
             state.loginMode = false
             state.contactsMode = false
+            state.contactDetails = false
+            state.contactAdd = false
+            state.contactEdit = false
+            state.contactDelete = false
             state.msg = "";
         },
         setContactsList(state: State, value: any) {
@@ -49,6 +61,18 @@ export const store = createStore<State>({
         },
         setContactsMode(state: State, value: boolean) {
             state.contactsMode = value;
+        },
+        setContactsDetails(state: State, value: boolean) {
+            state.contactDetails = value;
+        },
+        setContactsAdd(state: State, value: boolean) {
+            state.contactAdd = value;
+        },
+        setContactsEdit(state: State, value: boolean) {
+            state.contactEdit = value;
+        },
+        setContactsDelete(state: State, value: boolean) {
+            state.contactDelete = value;
         },
         setMsg(state: State, value: string) {
             state.msg = value;

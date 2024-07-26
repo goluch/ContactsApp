@@ -32,14 +32,13 @@
                 this.$store.commit('setLoading', true);
                 this.$store.commit('setAllDisplaysNull');
 
-                const url = 'login';
                 let email = this.useremail;
                 let passwd = this.password;
 
                 this.useremail = null;
                 this.password = null;
 
-                fetch(url, {
+                fetch('login', {
                     method: 'POST',
                     headers: {'Content-Type':'application/json'},
                     body: JSON.stringify({       
