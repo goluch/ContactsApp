@@ -40,7 +40,7 @@
             },
             logout() {
                this.$store.commit('setAllDisplaysNull')
-               this.$store.commit('setLoggedIn', false)
+               this.$store.commit('setLoggedIn', null)
             },
         }
     }

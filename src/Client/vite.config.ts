@@ -54,7 +54,11 @@ export default defineConfig({
             '^/GetContacts': {
                 target: target + "/api/Contacts",
                 secure: false
-            }
+            },
+            '^/CreateContact': {
+                target: target + "/api/Contacts",
+                secure: true
+            }          
         },
         port: 5173,
         https: {

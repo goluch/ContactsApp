@@ -41,7 +41,7 @@
     import { defineComponent } from 'vue';
 
     type Category = {
-        id: int
+        id: int,
         categoryName: string,
         subcategoryName: string
     }

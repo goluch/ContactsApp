@@ -1,35 +1,103 @@
 <template>
     <div v-if="this.$store.state.contactAdd" class="content">
-        <h2>Add contact</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Forename</th>
-                    <th>Surname</th>
-                    <th>Email</th>
-                    <th>Password</th>
-                    <th>Category</th>
-                    <th>Subcategory</th>
-                    <th>Phone Number</th>
-                    <th>Birth Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <!--<td>{{ contact.forename }}</td>
-                    <td>{{ contact.surname }}</td>
-                    <td>{{ contact.email }}</td>
-                    <td>{{ contact.password }}</td>
-                    <td>{{ contact.category.categoryName }}</td>
-                    <td>{{ contact.category.subcategoryName }}</td>
-                    <td>{{ contact.phoneNumber }}</td>
-                    <td>{{ contact.birthDate }}</td>-->
-                </tr>
-            </tbody>
-        </table>
+        <h3>Add contact</h3>
+        <form @submit.prevent="addContact">
+            <div class="mb-3">
+                <label for="Contact.forename">Forename:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.surname">Surname:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.email">Email:</label>
+                <input type="email" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.password">Password:</label>
+                <input type="password" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.category.categoryName">Category:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.category.subcategoryName">Subcategory:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.phoneNumber">Phone Number:</label>
+                <input type="text" class="form-control" required>
+            </div>
+            <div class="mb-3">
+                <label for="Contact.birthDate">Birth Date:</label>
+                <input type="date" class="form-control" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Add User</button>
+        </form>
     </div>
 </template>
 
-<script>
+<script lang="ts">
 
+    interface Category {
+        id: int;
+        categoryName: string;
+        subcategoryName: string;
+    }
+    
+
+    interface Contact {
+        forename: string;
+        surname: string;
+        email: string;
+        password: string;
+        category: Category;
+        phoneNumber: string;
+        birthDate: date;
+    }
+
+    export default {
+        data(): Contact {
+            return {
+                forename: '',
+                surname: '',
+                email: '',
+                password: '',
+                category: {
+                    id: 0,
+                    categoryName: '',
+                    subcategoryName: '',
+                },
+                phoneNumber: '',
+                birthDate: null,
+            };
+        },
+        methods: {
+            addContact() {
+                this.$store.commit('setLoading', true);
+                this.$store.commit('setAllDisplaysNull');
+
+                //this.Contact = null;
+                fetch('CreateContact', {
+                    method: 'POST',
+                    headers: {'Content-Type':'application/json'},
+                    body: JSON.stringify({       
+                        Contact: Contact
+                        }), 
+                    })
+                    .then(response => {
+                        this.$store.commit('setLoading', false);
+                        if (!response.ok) {
+                            this.$store.commit('setMsg', "Failed to add contact.");
+                            return;
+                        }
+
+                        this.$store.commit('setMsg', "Contact added successfully.");
+                        return;
+                    })
+            },
+        }
+    }
 </script>

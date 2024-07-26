@@ -6,6 +6,7 @@ export interface State {
     contactsList: any
     loading: boolean
     loggedIn: boolean
+    loggedInToken: string
     registrationMode: boolean
     loginMode: boolean
     contactsMode: boolean
@@ -24,6 +25,7 @@ export const store = createStore<State>({
         contactsList: null,
         loading: false,
         loggedIn: false,
+        loggedInToken: null,
         registrationMode: false,
         loginMode: true,
         contactsMode: false,
@@ -50,8 +52,9 @@ export const store = createStore<State>({
         setLoading(state: State, value: boolean) {
             state.loading = value;
         },
-        setloggedIn(state: State, value: boolean) {
-            state.loggedIn = value;
+        setloggedIn(state: State, value: string) {
+            state.loggedInToken = value;
+            state.loggedIn = (value == null) ? false : true; 
         },
         setRegistrationMode(state: State, value: boolean) {
             state.registrationMode = value;
