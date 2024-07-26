@@ -4,20 +4,20 @@
         <vue-good-table :columns="columns" :rows="this.$store.state.contactsList">
             <template #table-row="props">
                 <span v-if="props.column.field == 'action'">
-                    <button v-on:click="showContactDetails(props.row.forename)"
+                    <button v-on:click="showContactDetails(props.row.originalIndex)"
                             class="btn btn-primary">
                         Show details
                     </button>
                     <br />
-                    <button v-if="this.$store.state.loggedIn" v-on:click="addContact(props.row.forename)"
+                    <button v-if="this.$store.state.loggedIn" v-on:click="addContact(props.row.originalIndex)"
                             class="btn btn-primary mt-2">
                         Add
                     </button>
-                    <button v-if="this.$store.state.loggedIn" v-on:click="editContact(props.row.forename)"
+                    <button v-if="this.$store.state.loggedIn" v-on:click="editContact(props.row.originalIndex)"
                             class="btn btn-primary mt-2">
                         Edit
                     </button>
-                    <button v-if="this.$store.state.loggedIn" v-on:click="deleteContact(props.row.forename)"
+                    <button v-if="this.$store.state.loggedIn" v-on:click="deleteContact(props.row.originalIndex)"
                             class="btn btn-primary mt-2">
                         Delete
                     </button>
