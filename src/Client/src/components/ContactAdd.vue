@@ -8,7 +8,7 @@
             </div>
             <div class="mb-3">
                 <label for="surname">Surname:</label>
-                <input type="text" class="form-control" v-model="surname" required>
+                <input type="text" class="form-control" v-model="surnameForm" required>
             </div>
             <div class="mb-3">
                 <label for="email">Email:</label>
@@ -34,30 +34,12 @@
                 <label for="birthDate">Birth Date:</label>
                 <input type="date" class="form-control" v-model="birthDate" required>
             </div>
-            <button type="submit" class="btn btn-primary">Add User</button>
+            <button type="submit" class="btn btn-primary">Add Contact</button>
         </form>
     </div>
 </template>
 
 <script lang="ts">
-
-    interface Category {
-        id: int;
-        categoryName: string;
-        subcategoryName: string;
-    }
-    
-
-    interface Contact {
-        forename: string;
-        surname: string;
-        email: string;
-        password: string;
-        category: Category;
-        phoneNumber: string;
-        birthDate: date;
-    }
-
     export default {
         data(): Contact {
             return {
@@ -79,6 +61,8 @@
                 this.$store.commit('setLoading', true);
                 this.$store.commit('setAllDisplaysNull');
 
+                //Contact newContact = this.useremail;
+
                 //this.Contact = null; //wyczyœciæ formukarz po wys³aniu
                 fetch('CreateContact', {
                     method: 'POST',
@@ -86,7 +70,7 @@
                     body: JSON.stringify({
                         id: 0,
                         forename: forename,
-                        surname: surname,
+                        surname: surnameForm,
                         email: email,
                         password: password,
                         category: {
