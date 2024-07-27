@@ -1,4 +1,5 @@
-﻿using Application.Common.Models;
+﻿using Application.Categories.Queries.Get;
+using Application.Common.Models;
 using Application.Contacts.Commands.CreateContact;
 using Application.Contacts.Commands.DeleteContact;
 using Application.Contacts.Commands.Update;
@@ -18,6 +19,7 @@ namespace WebApp.Endpoints
                 //.RequireAuthorization()
                 //.MapGet(GetContactsWithPagination)
                 .MapGet(GetContacts)
+                .MapGet(GetCategories)
                 .MapPost(CreateContact)
                 .MapPut(UpdateContact, "{id}")
                 .MapDelete(DeleteContact, "{id}"); ;
@@ -31,6 +33,11 @@ namespace WebApp.Endpoints
         public Task<IEnumerable<ContactDto>> GetContacts(ISender sender)
         {
             return sender.Send(new GetContactsQuery());
+        }
+
+        public Task<IEnumerable<string>> GetCategories(ISender sender)
+        {
+            return sender.Send(new GetCategoriesQuery());
         }
 
         public Task<int> CreateContact(ISender sender, CreateContactCommand command)
