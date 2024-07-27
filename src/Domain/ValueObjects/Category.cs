@@ -31,7 +31,7 @@ namespace Domain.ValueObjects
 
             if (categoryName == Business)
             {
-                if (!SupportedSubcategoryNames.Contains(subcategoryName))
+                if (!SupportedBusinessSubcategoryNames.Contains(subcategoryName))
                 {
                     throw new UnsupportedSubcategoryNameException(categoryName);
                 }
@@ -58,7 +58,7 @@ namespace Domain.ValueObjects
         public static string Boss => "Boss";
         public static string Client => "Client";
 
-        protected static IEnumerable<string> SupportedSubcategoryNames
+        public static IEnumerable<string> SupportedBusinessSubcategoryNames
         {
             get
             {
