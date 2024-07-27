@@ -2,7 +2,7 @@
     <div class="sidebar">
         <a v-if="!$store.state.loggedIn" v-on:click="registerTrigger" data-cy="cy-login">Register</a>
         <a v-if="!$store.state.loggedIn" v-on:click="loginTrigger" data-cy="cy-login">Login</a>
-        <a v-on:click="fetchContacts">Contacts list</a>
+        <a v-on:click="fetchContactsAndRelatedData">Contacts list</a>
         <hr />
         <a v-if="$store.state.loggedIn" v-on:click="logout" data-cy="cy-logout">Logout</a>
     </div>
@@ -18,6 +18,11 @@
                 const store = useStore(key)
                 store.state.loggedIn
             },
+            fetchContactsAndRelatedData() {
+                this.fetchContacts()
+                this.fetchSuportedCategories()
+                this.fetchsetSuportedBusinessSubcategories()
+            },
             fetchContacts() {
                 this.$store.commit('setLoading', true)
                 this.$store.commit('setAllDisplaysNull')
@@ -27,6 +32,22 @@
                         this.$store.commit('setContactsList', json)
                         this.$store.commit('setLoading', false)
                         this.$store.commit('setContactsMode', true)
+                        return;
+                    })
+            },
+            fetchSuportedCategories() {
+                fetch('GetCategories')
+                    .then(r => r.json())
+                    .then(json => {
+                        this.$store.commit('setSuportedCategoriesList', json)
+                        return;
+                    })
+            },
+            fetchsetSuportedBusinessSubcategories() {
+                fetch('GetBusinessSubategories')
+                    .then(r => r.json())
+                    .then(json => {
+                        this.$store.commit('setSuportedBusinessSubcategoriesList', json)
                         return;
                     })
             },

@@ -21,7 +21,7 @@
             <div class="mb-3">
                 <label>Category:</label>
                 <select class="form-control" v-model="newContact.category.categoryName" required>
-                    <option v-for="(item, index) in categories" :value="item.value" :key="index">{{ item.text }}</option>
+                    <option v-for="(item, index) in this.$store.state.suportedCategoriesList" :value="item.value" :key="index">{{ item }}</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -47,7 +47,9 @@
     export default {
     data() {
         return {
-            newContact: new Contact
+            newContact: new Contact,
+            categories: [],
+            selectedCategory: null,
         };
     },
     methods: {

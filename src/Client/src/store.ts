@@ -1,9 +1,12 @@
 import { type InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
+import { Contact } from "./common/types";
 
 // define your typings for the store state
 export interface State {
-    contactsList: any
+    contactsList: [Contact]
+    suportedCategoriesList: [string]
+    suportedBusinessSubcategoriesList: [string]
     loading: boolean
     loggedIn: boolean
     loggedInToken: string
@@ -23,6 +26,8 @@ export const key: InjectionKey<Store<State>> = Symbol()
 export const store = createStore<State>({
     state: {
         contactsList: null,
+        suportedCategoriesList: null,
+        suportedBusinessSubcategoriesList: null,
         loading: false,
         loggedIn: false,
         loggedInToken: null,
@@ -46,8 +51,14 @@ export const store = createStore<State>({
             state.contactDelete = false
             state.msg = "";
         },
-        setContactsList(state: State, value: any) {
+        setContactsList(state: State, value: [Contact]) {
             state.contactsList = value;
+        },
+        setSuportedCategoriesList(state: State, value: [string]) {
+            state.suportedCategoriesList = value;
+        },
+        setSuportedBusinessSubcategoriesList(state: State, value: [string]) {
+            state.suportedBusinessSubcategoriesList = value;
         },
         setLoading(state: State, value: boolean) {
             state.loading = value;

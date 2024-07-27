@@ -55,6 +55,14 @@ export default defineConfig({
                 target: target + "/api/Contacts",
                 secure: false
             },
+            '^/GetCategories': {
+                target: target + "/api/Contacts",
+                secure: false
+            },
+            '^/GetBusinessSubategories': {
+                target: target + "/api/Contacts",
+                secure: false
+            },
             '^/CreateContact': {
                 target: target + "/api/Contacts",
                 secure: false
