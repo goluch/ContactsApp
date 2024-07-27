@@ -45,7 +45,7 @@ namespace Domain.ValueObjects
         public static string Private => "Private";
         public static string Other => "Other";
 
-        protected static IEnumerable<string> SupportedCategoryNames
+        public static IEnumerable<string> SupportedCategoryNames
         {
             get
             {

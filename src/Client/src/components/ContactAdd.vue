@@ -20,7 +20,9 @@
             </div>
             <div class="mb-3">
                 <label>Category:</label>
-                <input type="text" class="form-control" v-model="newContact.category.categoryName" required>
+                <select class="form-control" v-model="newContact.category.categoryName" required>
+                    <option v-for="(item, index) in categories" :value="item.value" :key="index">{{ item.text }}</option>
+                </select>
             </div>
             <div class="mb-3">
                 <label>Subcategory:</label>
