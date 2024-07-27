@@ -1,4 +1,5 @@
-﻿using Application.Categories.Queries.Get;
+﻿using Application.BusinessSubategories.Queries.Get;
+using Application.Categories.Queries.Get;
 using Application.Common.Models;
 using Application.Contacts.Commands.CreateContact;
 using Application.Contacts.Commands.DeleteContact;
@@ -20,6 +21,7 @@ namespace WebApp.Endpoints
                 //.MapGet(GetContactsWithPagination)
                 .MapGet(GetContacts)
                 .MapGet(GetCategories)
+                .MapGet(GetBusinessSubategories)
                 .MapPost(CreateContact)
                 .MapPut(UpdateContact, "{id}")
                 .MapDelete(DeleteContact, "{id}"); ;
@@ -38,6 +40,11 @@ namespace WebApp.Endpoints
         public Task<IEnumerable<string>> GetCategories(ISender sender)
         {
             return sender.Send(new GetCategoriesQuery());
+        }
+
+        public Task<IEnumerable<string>> GetBusinessSubategories(ISender sender)
+        {
+            return sender.Send(new GetBusinessSubategoriesQuery());
         }
 
         public Task<int> CreateContact(ISender sender, CreateContactCommand command)
