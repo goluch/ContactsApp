@@ -3,100 +3,70 @@
         <h3>Add contact</h3>
         <form @submit.prevent="addContact">
             <div class="mb-3">
-                <label for="forename">Forename:</label>
-                <input type="text" class="form-control" v-model="forename" required>
+                <label>Forename:</label>
+                <input type="text" class="form-control" v-model="newContact.forename" required>
             </div>
             <div class="mb-3">
-                <label for="surname">Surname:</label>
-                <input type="text" class="form-control" v-model="surnameForm" required>
+                <label>Surname:</label>
+                <input type="text" class="form-control" v-model="newContact.surnameForm" required>
             </div>
             <div class="mb-3">
-                <label for="email">Email:</label>
-                <input type="email" class="form-control" v-model="email" required>
+                <label>Email:</label>
+                <input type="email" class="form-control" v-model="newContact.email" required>
             </div>
             <div class="mb-3">
-                <label for="password">Password:</label>
-                <input type="password" class="form-control" v-model="password" required>
+                <label>Password:</label>
+                <input type="password" class="form-control" v-model="newContact.password" required>
             </div>
             <div class="mb-3">
-                <label for="categoryName">Category:</label>
-                <input type="text" class="form-control" v-model="categoryName" required>
+                <label>Category:</label>
+                <input type="text" class="form-control" v-model="newContact.category.categoryName" required>
             </div>
             <div class="mb-3">
-                <label for="subcategoryName">Subcategory:</label>
-                <input type="text" class="form-control" v-model="subcategoryName" required>
+                <label>Subcategory:</label>
+                <input type="text" class="form-control" v-model="newContact.category.subcategoryName" required>
             </div>
             <div class="mb-3">
-                <label for="phoneNumber">Phone Number:</label>
-                <input type="text" class="form-control" v-model="phoneNumber" required>
+                <label>Phone Number:</label>
+                <input type="text" class="form-control" v-model="newContact.phoneNumber" required>
             </div>
             <div class="mb-3">
-                <label for="birthDate">Birth Date:</label>
-                <input type="date" class="form-control" v-model="birthDate" required>
+                <label>Birth Date:</label>
+                <input type="date" class="form-control" v-model="newContact.birthDate" required>
             </div>
             <button type="submit" class="btn btn-primary">Add Contact</button>
         </form>
-    </div>
+    </div>  
 </template>
 
 <script lang="ts">
+    import { Contact, Category } from "../common/types";
+
     export default {
-        data(): Contact {
-            return {
-                forename: '',
-                surname: '',
-                email: '',
-                password: '',
-                category: {
-                    id: 0,
-                    categoryName: '',
-                    subcategoryName: '',
-                },
-                phoneNumber: '',
-                birthDate: null,
-            };
-        },
-        methods: {
-            addContact() {
-                this.$store.commit('setLoading', true);
-                this.$store.commit('setAllDisplaysNull');
-
-                //Contact newContact = this.useremail;
-
-                //this.Contact = null; //wyczyœciæ formukarz po wys³aniu
-                fetch('CreateContact', {
-                    method: 'POST',
-                    headers: {'Content-Type':'application/json'},
-                    body: JSON.stringify({
-                        id: 0,
-                        forename: forename,
-                        surname: surnameForm,
-                        email: email,
-                        password: password,
-                        category: {
-                            id: 0,
-                            categoryName: categoryName,
-                            subcategoryName: subcategoryName
-                        },
-                        phoneNumber: phoneNumber,
-                        birthDate: birthDate
-                        }), 
-                    })
-                    .then(response => {
-                    this.$store.commit('setLoading', false);
+    data() {
+        return {
+            newContact: new Contact
+        };
+    },
+    methods: {
+        addContact() {
+            this.$store.commit('setLoading', true);
+            this.$store.commit('setAllDisplaysNull');
+            fetch('CreateContact', {
+                method: 'POST',
+                headers: {'Content-Type':'application/json'},
+                body: JSON.stringify(this.newContact), 
+                })
+                .then(response => {
+                this.$store.commit('setLoading', false);
                     if (!response.ok) {
                         this.$store.commit('setMsg', 'Failed to add contact.');
-                        return response.json();
+                        return;
                     }
-                    else
-                    {
+                    else {
                         this.$store.commit('setMsg', "Contact added successfully.");
-                        return response.json();
+                        return;
                     }
-                })
-                .then(json => {
-                    this.$store.commit('setLoading', false);
-                    this.$store.commit('addMsg', ', JSON responce: ' + JSON.stringify(json));
                 })
             },
         }
