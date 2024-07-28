@@ -25,6 +25,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DomainUnitTest", "test\Doma
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ArchitectureTest", "ArchitectureTest\ArchitectureTest.csproj", "{F1043FA6-DEFE-450D-BE91-0A218B397286}"
 EndProject
+Project("{54A90642-561A-4BB1-A94E-469ADEE60C69}") = "client", "src\Client\client.esproj", "{664F82A4-85CD-47B4-B204-81842FB4C195}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,12 @@ Global
 		{F1043FA6-DEFE-450D-BE91-0A218B397286}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F1043FA6-DEFE-450D-BE91-0A218B397286}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F1043FA6-DEFE-450D-BE91-0A218B397286}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664F82A4-85CD-47B4-B204-81842FB4C195}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{664F82A4-85CD-47B4-B204-81842FB4C195}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{664F82A4-85CD-47B4-B204-81842FB4C195}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{664F82A4-85CD-47B4-B204-81842FB4C195}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{664F82A4-85CD-47B4-B204-81842FB4C195}.Release|Any CPU.Build.0 = Release|Any CPU
+		{664F82A4-85CD-47B4-B204-81842FB4C195}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -69,6 +77,7 @@ Global
 		{08AB8345-4F3A-46F8-B432-2A8FE4589ACF} = {4CD322C7-CC04-4F34-B5F0-F92853FD84DF}
 		{5339EA9B-4DBB-4CB4-AE4C-5E37E6B97005} = {1087BAC6-D744-4FA7-B287-082B2E9D00E3}
 		{F1043FA6-DEFE-450D-BE91-0A218B397286} = {1087BAC6-D744-4FA7-B287-082B2E9D00E3}
+		{664F82A4-85CD-47B4-B204-81842FB4C195} = {08AB8345-4F3A-46F8-B432-2A8FE4589ACF}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {31FB3DAB-17F6-444C-ADCB-2362BE48100B}

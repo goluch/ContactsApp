@@ -1,11 +1,22 @@
+
+export class CategoryItem {
+    categoryName: string
+    allowedSubcategories: string
+
+    constructor() {
+        this.categoryName = ''
+        this.allowedSubcategories = ''
+    }
+}
+
 export class Category {
     id: number
-    categoryName: string
+    categoryItem: CategoryItem
     subcategoryName: string
 
     constructor() {
         this.id = 0
-        this.categoryName = ''
+        this.categoryItem = new CategoryItem
         this.subcategoryName = ''
     }
 }

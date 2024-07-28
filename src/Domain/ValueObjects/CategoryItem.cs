@@ -3,7 +3,7 @@ using static Domain.ValueObjects.Category;
 
 namespace Domain.ValueObjects
 {
-    public class CategoryItem : ValueObject
+    public class CategoryItem : BaseValueObject<int>
     {
         public string CategoryName { get; init; }
 
