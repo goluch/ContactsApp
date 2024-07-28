@@ -20,17 +20,21 @@
             </div>
             <div class="mb-3">
                 <label>Category:</label>
-                <select class="form-control" v-model="newContact.category.categoryName" required>
-                    <option v-for="(item, index) in this.$store.state.suportedCategoriesList" :value="item.value" :key="index">{{ item }}</option>
+                <select class="form-control" v-model="newContact.category.categoryName" @change="adjustSubcategory" required>
+                    <option v-for="(item) in this.$store.state.suportedCategoriesList" :value="item">{{ item }}</option>
                 </select>
             </div>
             <div class="mb-3">
-                <label>Subcategory:</label>
-                <input type="text" class="form-control" v-model="newContact.category.subcategoryName" required>
+                <label v-if="showSubcategoryLabel">Subcategory:</label>
+                <input v-if="showSubcategoryInput" type="text" class="form-control" v-model="newContact.category.subcategoryName" required>
+                <select v-if="showSubcategorySelect" class="form-control" v-model="newContact.category.subcategoryName" required>
+                    <option v-for="item in this.$store.state.suportedBusinessSubcategoriesList" :value="item">{{ item }}</option>
+                </select>
+
             </div>
             <div class="mb-3">
                 <label>Phone Number:</label>
-                <input type="text" class="form-control" v-model="newContact.phoneNumber" required>
+                <input type="tel" class="form-control" v-model="newContact.phoneNumber" required>
             </div>
             <div class="mb-3">
                 <label>Birth Date:</label>
@@ -46,13 +50,41 @@
 
     export default {
     data() {
-        return {
+        return {          
+            showSubcategoryLabel: false,
+            showSubcategoryInput: false,
+            showSubcategorySelect: false,
             newContact: new Contact,
             categories: [],
             selectedCategory: null,
         };
     },
     methods: {
+        isSubcategorySelectDisabled()
+        {
+            return false;
+        },
+        adjustSubcategory(e) {
+            // Zamieniæ domenie (backend) kategorie na pary: nazwa + typ podkategorii: (any, limited, none)
+            switch (e.target.value) 
+            {
+                case 'Business':                 
+                    this.showSubcategoryLabel = true;
+                    this.showSubcategoryInput = false;
+                    this.showSubcategorySelect = true;
+                    break;
+                case 'Private':
+                    this.showSubcategoryLabel = false;
+                    this.showSubcategoryInput = false;
+                    this.showSubcategorySelect = false;
+                    break;
+                case 'Other':
+                    this.showSubcategoryLabel = true;
+                    this.showSubcategoryInput = true;
+                    this.showSubcategorySelect = false;
+                    break;
+            }
+        },
         addContact() {
             this.$store.commit('setLoading', true);
             this.$store.commit('setAllDisplaysNull');
