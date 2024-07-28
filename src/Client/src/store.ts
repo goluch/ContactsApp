@@ -9,7 +9,7 @@ export interface State {
     suportedBusinessSubcategoriesList: [string]
     loading: boolean
     loggedIn: boolean
-    loggedInToken: string
+    token: string
     registrationMode: boolean
     loginMode: boolean
     contactsMode: boolean
@@ -63,9 +63,11 @@ export const store = createStore<State>({
         setLoading(state: State, value: boolean) {
             state.loading = value;
         },
-        setloggedIn(state: State, value: string) {
-            state.loggedInToken = value;
-            state.loggedIn = (value == null) ? false : true; 
+        setToken(state: State, value: string) {
+            state.token = value;
+        },
+        setloggedIn(state: State, value: boolean) {
+            state.loggedIn = value; 
         },
         setRegistrationMode(state: State, value: boolean) {
             state.registrationMode = value;

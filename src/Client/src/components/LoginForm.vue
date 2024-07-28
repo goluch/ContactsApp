@@ -57,12 +57,11 @@
                     else
                     {
                         this.$store.commit('setMsg', 'Login succeed for ' + email);
+                        this.$store.commit('setloggedIn', true);
                         return response.json();
                     }
                 })
                 .then(json => {
-                    this.$store.commit('setloggedIn', json);
-                    this.$store.commit('setLoading', false);
                     this.$store.commit('addMsg', ', JSON responce: ' + JSON.stringify(json));
                 })
             }

@@ -15,23 +15,23 @@
     export default {
         methods: {
             setup () {
-                const store = useStore(key)
-                store.state.loggedIn
+                const store = useStore(key);
+                store.state.loggedIn = false;
             },
             fetchContactsAndRelatedData() {
-                this.fetchContacts()
-                this.fetchSuportedCategories()
-                this.fetchsetSuportedBusinessSubcategories()
+                this.fetchContacts();
+                this.fetchSuportedCategories();
+                this.fetchsetSuportedBusinessSubcategories();
             },
             fetchContacts() {
-                this.$store.commit('setLoading', true)
-                this.$store.commit('setAllDisplaysNull')
+                this.$store.commit('setLoading', true);
+                this.$store.commit('setAllDisplaysNull');
                 fetch('GetContacts')
                     .then(r => r.json())
                     .then(json => {
-                        this.$store.commit('setContactsList', json)
-                        this.$store.commit('setLoading', false)
-                        this.$store.commit('setContactsMode', true)
+                        this.$store.commit('setContactsList', json);
+                        this.$store.commit('setLoading', false);
+                        this.$store.commit('setContactsMode', true);
                         return;
                     })
             },
@@ -39,7 +39,7 @@
                 fetch('GetCategories')
                     .then(r => r.json())
                     .then(json => {
-                        this.$store.commit('setSuportedCategoriesList', json)
+                        this.$store.commit('setSuportedCategoriesList', json);
                         return;
                     })
             },
@@ -47,21 +47,21 @@
                 fetch('GetBusinessSubategories')
                     .then(r => r.json())
                     .then(json => {
-                        this.$store.commit('setSuportedBusinessSubcategoriesList', json)
+                        this.$store.commit('setSuportedBusinessSubcategoriesList', json);
                         return;
                     })
             },
             registerTrigger() {
-                this.$store.commit('setAllDisplaysNull')
-                this.$store.commit('setRegistrationMode', true)
+                this.$store.commit('setAllDisplaysNull');
+                this.$store.commit('setRegistrationMode', true);
             },
             loginTrigger() {
-               this.$store.commit('setAllDisplaysNull')
-               this.$store.commit('setLoginMode', true)
+                this.$store.commit('setAllDisplaysNull');
+                this.$store.commit('setLoginMode', true);
             },
             logout() {
-               this.$store.commit('setAllDisplaysNull')
-               this.$store.commit('setLoggedIn', null)
+                this.$store.commit('setAllDisplaysNull');
+                this.$store.commit('setloggedIn', false);
             },
         }
     }
