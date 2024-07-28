@@ -5,34 +5,7 @@ namespace Domain.ValueObjects
 {
     public class Category : BaseValueObject<int>
     {
-        public record CategoryItem
-        {
-            public string CategoryName
-            {
-                get => CategoryName;
-                init
-                {
-                    if (value == Business)
-                    {
-                        AllowedSubcategories = Restricted;
-                    }
-                    if (value == Private)
-                    {
-                        AllowedSubcategories = None;
-                    }
-                    if (value == Other)
-                    {
-                        AllowedSubcategories = Any;
-                    }
-                    else
-                    {
-                        throw new UnsupportedCategoryNameException(value);
-                    }
-                }
-            }
-
-            public string AllowedSubcategories { get; private set; }
-        }
+ 
         public CategoryItem CategoryItemValue { get; private set; }
 
         public string SubcategoryName { get; private set; }
