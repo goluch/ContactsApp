@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240715200924_InitialCreate")]
+    [Migration("20240728133815_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -65,9 +65,8 @@ namespace Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("CategoryItemValueId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SubcategoryName")
                         .IsRequired()
@@ -75,7 +74,24 @@ namespace Infrastructure.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CategoryItemValueId");
+
                     b.ToTable("Category");
+                });
+
+            modelBuilder.Entity("Domain.ValueObjects.CategoryItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("CategoryName")
+                        .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CategoryItem");
                 });
 
             modelBuilder.Entity("Infrastructure.Identity.ApplicationUser", b =>
@@ -279,6 +295,17 @@ namespace Infrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Category");
+                });
+
+            modelBuilder.Entity("Domain.ValueObjects.Category", b =>
+                {
+                    b.HasOne("Domain.ValueObjects.CategoryItem", "CategoryItemValue")
+                        .WithMany()
+                        .HasForeignKey("CategoryItemValueId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("CategoryItemValue");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

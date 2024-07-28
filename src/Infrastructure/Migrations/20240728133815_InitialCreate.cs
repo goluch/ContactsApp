@@ -51,17 +51,16 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Category",
+                name: "CategoryItem",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    CategoryName = table.Column<string>(type: "TEXT", nullable: false),
-                    SubcategoryName = table.Column<string>(type: "TEXT", nullable: false)
+                    CategoryName = table.Column<string>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Category", x => x.Id);
+                    table.PrimaryKey("PK_CategoryItem", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -171,6 +170,26 @@ namespace Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Category",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    CategoryItemValueId = table.Column<int>(type: "INTEGER", nullable: false),
+                    SubcategoryName = table.Column<string>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Category", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Category_CategoryItem_CategoryItemValueId",
+                        column: x => x.CategoryItemValueId,
+                        principalTable: "CategoryItem",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Contacts",
                 columns: table => new
                 {
@@ -233,6 +252,11 @@ namespace Infrastructure.Migrations
                 unique: true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Category_CategoryItemValueId",
+                table: "Category",
+                column: "CategoryItemValueId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Contacts_CategoryId",
                 table: "Contacts",
                 column: "CategoryId");
@@ -267,6 +291,9 @@ namespace Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "Category");
+
+            migrationBuilder.DropTable(
+                name: "CategoryItem");
         }
     }
 }
