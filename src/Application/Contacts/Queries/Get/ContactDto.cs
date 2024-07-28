@@ -6,13 +6,13 @@ namespace Application.Contacts.Queries.Get
 {
     public class ContactDto
     {
-        public string Forename { get; set; }
-        public string Surname { get; set; }
-        public string Email { get; set; }
-        public string Password { get; set; }
-        public Category Category { get; set; }
-        public string PhoneNumber { get; set; }
-        public DateOnly BirthDate { get; set; }
+        public string Forename { get; init; }
+        public string Surname { get; init; }
+        public string Email { get; init; }
+        public string Password { get; init; }
+        public Category Category { get; init; }
+        public string PhoneNumber { get; init; }
+        public DateOnly BirthDate { get; init; }
 
         private class Mapping : Profile
         {

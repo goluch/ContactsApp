@@ -3,7 +3,7 @@ using static Domain.ValueObjects.Category;
 
 namespace Domain.ValueObjects
 {
-    public class CategoryItem : BaseValueObject<int>
+    public class CategoryItem : ValueObject
     {
         public string CategoryName { get; init; }
 
@@ -71,6 +71,16 @@ namespace Domain.ValueObjects
                 yield return Business;
                 yield return Private;
                 yield return Other;
+            }
+        }
+
+        public static IEnumerable<CategoryItem> SupportedCategoryItems
+        {
+            get
+            {
+                yield return new CategoryItem { CategoryName = Business };
+                yield return new CategoryItem { CategoryName = Private };
+                yield return new CategoryItem { CategoryName = Other };
             }
         }
 

@@ -7,6 +7,7 @@ using Application.Contacts.Commands.Update;
 using Application.Contacts.Queries;
 using Application.Contacts.Queries.Get;
 using Application.Contacts.Queries.GetContactsWithPagination;
+using Domain.ValueObjects;
 using MediatR;
 using WebApp.Infrastructure;
 
@@ -37,7 +38,7 @@ namespace WebApp.Endpoints
             return sender.Send(new GetContactsQuery());
         }
 
-        public Task<IEnumerable<string>> GetCategories(ISender sender)
+        public Task<IEnumerable<CategoryItem>> GetCategories(ISender sender)
         {
             return sender.Send(new GetCategoriesQuery());
         }
