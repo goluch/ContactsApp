@@ -98,7 +98,7 @@ namespace Infrastructure.Data
                     Surname = "Goluch",
                     Email = "tomasz.goluch@gmail.com",
                     Password = "mojeHaslo",
-                    Category = new Category("Business", "Client"),
+                    Category = new Category("Business" , "Client"),
                     PhoneNumber = "+48791152365",
                     BirthDate = new DateOnly(1974, 09, 08)
                 });
@@ -109,7 +109,7 @@ namespace Infrastructure.Data
                     Surname = "Placek",
                     Email = "jacek.placek@gmail.com",
                     Password = "jackaHaslo",
-                    Category = new Category("Business", "Boss"),
+                    Category = new Category( "Other", "Wacek"),
                     PhoneNumber = "+48999999999",
                     BirthDate = new DateOnly(1981, 03, 02)
                 });

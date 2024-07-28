@@ -19,7 +19,7 @@ namespace DomainUnitTest
         public void ShouldThrowUnsupportedCategoryNameExceptionGivenWrongName()
         {
             FluentActions.Invoking(() => new Category("WrongName", ""))
-                .Should().Throw<UnsupportedCategoryNameException>();
+                .Should().Throw<UnsupportedCategoryItemException>();
         }
         [Fact]
         public void ShouldThrowUnsupportedSubcategoryNameExceptionGivenNullSubcategoryName()

@@ -15,7 +15,7 @@ namespace Application.BusinessSubategories.Queries.Get
     {
         public async Task<IEnumerable<string>> Handle(GetBusinessSubategoriesQuery request, CancellationToken cancellationToken)
         {
-            return Category.SupportedBusinessSubcategoryNames;
+            return Category.SupportedRestrictedSubcategoryNames;
         }
     }
 }
