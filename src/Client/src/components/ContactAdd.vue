@@ -21,7 +21,7 @@
             <div class="mb-3">
                 <label>Category:</label>
                 <select class="form-control" v-model="newContact.category.categoryName" @change="adjustSubcategory" required>
-                    <option v-for="(item) in this.$store.state.suportedCategoriesList" :value="item">{{ item }}</option>
+                    <option v-for="item in this.$store.state.suportedCategoriesList" :value="item.allowedSubcategories">{{ item.categoryName }}</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -65,22 +65,21 @@
             return false;
         },
         adjustSubcategory(e) {
-            // Zamieniæ domenie (backend) kategorie na pary: nazwa + typ podkategorii: (any, limited, none)
             switch (e.target.value) 
             {
-                case 'Business':                 
+                 case 'Any':
+                    this.showSubcategoryLabel = true;
+                    this.showSubcategoryInput = true;
+                    this.showSubcategorySelect = false;
+                    break;
+                case 'Restricted':                 
                     this.showSubcategoryLabel = true;
                     this.showSubcategoryInput = false;
                     this.showSubcategorySelect = true;
                     break;
-                case 'Private':
+                case 'None':
                     this.showSubcategoryLabel = false;
                     this.showSubcategoryInput = false;
-                    this.showSubcategorySelect = false;
-                    break;
-                case 'Other':
-                    this.showSubcategoryLabel = true;
-                    this.showSubcategoryInput = true;
                     this.showSubcategorySelect = false;
                     break;
             }
