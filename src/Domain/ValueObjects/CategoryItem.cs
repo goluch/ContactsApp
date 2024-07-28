@@ -5,33 +5,74 @@ namespace Domain.ValueObjects
 {
     public class CategoryItem : BaseValueObject<int>
     {
-        public string CategoryName
+        public string CategoryName { get; init; }
+
+        public string AllowedSubcategories
         {
-            get => CategoryName;
-            init
+            get
             {
-                if (value == Business)
+                if (CategoryName == Business)
                 {
-                    AllowedSubcategories = Restricted;
+                    return Restricted;
                 }
-                if (value == Private)
+                if (CategoryName == Private)
                 {
-                    AllowedSubcategories = None;
+                    return None;
                 }
-                if (value == Other)
+                if (CategoryName == Other)
                 {
-                    AllowedSubcategories = Any;
+                    return Any;
                 }
                 else
                 {
-                    throw new UnsupportedCategoryNameException(value);
+                    throw new UnsupportedCategoryNameException(CategoryName);
                 }
             }
         }
 
-        public string AllowedSubcategories { get; private set; }
-
         public CategoryItem() { }
+
+        public CategoryItem(string categoryName)
+        {
+
+            if (!SupportedCategoryNames.Contains(categoryName))
+            {
+                throw new UnsupportedCategoryNameException(categoryName);
+            }
+            if (!SupportedCategoryNames.Contains(categoryName))
+            {
+                throw new UnsupportedCategoryNameException(categoryName);
+            }
+            this.CategoryName = categoryName;
+        }
+
+        public static string Any => "Any";
+        public static string Restricted => "Restricted";
+        public static string None => "None";
+
+        public static IEnumerable<string> SupportedAllowedSubcategories
+        {
+            get
+            {
+                yield return Any;
+                yield return Restricted;
+                yield return None;
+            }
+        }
+
+        public static string Business => "Business";
+        public static string Private => "Private";
+        public static string Other => "Other";
+
+        public static IEnumerable<string> SupportedCategoryNames
+        {
+            get
+            {
+                yield return Business;
+                yield return Private;
+                yield return Other;
+            }
+        }
 
         protected override IEnumerable<object> GetEqualityComponents()
         {

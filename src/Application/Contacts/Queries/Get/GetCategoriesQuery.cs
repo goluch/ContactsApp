@@ -15,7 +15,7 @@ namespace Application.Categories.Queries.Get
     {
         public async Task<IEnumerable<string>> Handle(GetCategoriesQuery request, CancellationToken cancellationToken)
         {
-            return Category.SupportedCategoryNames;
+            return CategoryItem.SupportedCategoryNames;
         }
     }
 }

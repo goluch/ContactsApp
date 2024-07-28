@@ -10,6 +10,7 @@ namespace Domain.ValueObjects
 
         public string SubcategoryName { get; private set; }
 
+        public Category() { }
 
         public Category(string categoryName, string subcategoryName)
         {
@@ -18,41 +19,8 @@ namespace Domain.ValueObjects
                 throw new InvalidCategoryNameException(categoryName);
             }
 
-            if (!SupportedCategoryNames.Contains(categoryName))
-            {
-                throw new UnsupportedCategoryNameException(categoryName);
-            }
-
-            CategoryItemValue = new CategoryItem { CategoryName = categoryName };
-            SubcategoryName = subcategoryName;
-        }
-
-        public static string Any => "Any";
-        public static string Restricted => "Restricted";
-        public static string None => "None";
-
-        public static IEnumerable<string> SupportedAllowedSubcategories
-        {
-            get
-            {
-                yield return Any;
-                yield return Restricted;
-                yield return None;
-            }
-        }
-
-        public static string Business => "Business";
-        public static string Private => "Private";
-        public static string Other => "Other";
-
-        public static IEnumerable<string> SupportedCategoryNames
-        {
-            get
-            {
-                yield return Business;
-                yield return Private;
-                yield return Other;
-            }
+            this.CategoryItemValue = new CategoryItem { CategoryName = categoryName };
+            this.SubcategoryName = subcategoryName;
         }
 
         public static string Boss => "Boss";
