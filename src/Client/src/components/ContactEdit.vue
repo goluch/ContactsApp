@@ -20,8 +20,8 @@
             </div>
             <div class="mb-3">
                 <label>Category:</label>
-                <select class="form-control" v-model="contact.category.categoryItemValue" @change="adjustSubcategory(this.newContact.category.categoryItemValue.allowedSubcategories)" required>
-                    <option v-for="item in this.$store.state.suportedCategoriesList" :value="item">{{ item.categoryName }}</option>
+                <select class="form-control" v-model="contact.category.categoryItemValue.categoryName" @change="adjustSubcategory(contact.category.categoryItemValue.allowedSubcategories)" required>
+                    <option v-for="item in this.$store.state.suportedCategoriesList" :value="item.categoryName">{{ item.categoryName }}</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -57,6 +57,11 @@
                 newContact: new Contact,
             };
         },
+        updated() {
+          if (this.$store.state.contactEdit) {
+            this.adjustSubcategory(this.contact.category.categoryItemValue.allowedSubcategories);
+          }
+        },
         props: ['contact'],
         methods: {
             isSubcategorySelectDisabled() {
@@ -89,17 +94,17 @@
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(this.newContact),
                 })
-                    .then(response => {
-                        this.$store.commit('setLoading', false);
-                        if (!response.ok) {
-                            this.$store.commit('setMsg', 'Failed to add contact.');
-                            return;
-                        }
-                        else {
-                            this.$store.commit('setMsg', "Contact added successfully.");
-                            return;
-                        }
-                    })
+                .then(response => {
+                    this.$store.commit('setLoading', false);
+                    if (!response.ok) {
+                        this.$store.commit('setMsg', 'Failed to add contact.');
+                        return;
+                    }
+                    else {
+                        this.$store.commit('setMsg', "Contact added successfully.");
+                        return;
+                    }
+                })
             },
         }
     }
