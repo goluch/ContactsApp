@@ -11,12 +11,12 @@ export class CategoryItem {
 
 export class Category {
     id: number
-    categoryItem: CategoryItem
+    categoryItemValue: CategoryItem
     subcategoryName: string
 
     constructor() {
         this.id = 0
-        this.categoryItem = new CategoryItem
+        this.categoryItemValue = new CategoryItem
         this.subcategoryName = ''
     }
 }

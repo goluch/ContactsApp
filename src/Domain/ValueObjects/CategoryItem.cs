@@ -5,7 +5,14 @@ namespace Domain.ValueObjects
 {
     public class CategoryItem : BaseValueObject<int>
     {
-        public string CategoryName { get; init; }
+        public string CategoryName {
+            get => CategoryName;
+            init
+            {
+                ValidateCategoryName(value);
+                CategoryName = value;
+            }
+        }
 
         public string AllowedSubcategories
         {
@@ -34,16 +41,20 @@ namespace Domain.ValueObjects
 
         public CategoryItem(string categoryName)
         {
-
-            if (!SupportedCategoryNames.Contains(categoryName))
-            {
-                throw new UnsupportedCategoryNameException(categoryName);
-            }
-            if (!SupportedCategoryNames.Contains(categoryName))
-            {
-                throw new UnsupportedCategoryNameException(categoryName);
-            }
+            ValidateCategoryName(categoryName);
             this.CategoryName = categoryName;
+        }
+
+        private static void ValidateCategoryName(string categoryName)
+        {
+            if (string.IsNullOrWhiteSpace(categoryName))
+            {
+                throw new UnsupportedCategoryNameException(categoryName);
+            }
+            if (!SupportedCategoryNames.Contains(categoryName))
+            {
+                throw new UnsupportedCategoryNameException(categoryName);
+            }
         }
 
         public static string Any => "Any";

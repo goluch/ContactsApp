@@ -6,19 +6,14 @@ namespace Domain.ValueObjects
     public class Category : BaseValueObject<int>
     {
  
-        public CategoryItem CategoryItemValue { get; private set; }
+        public CategoryItem CategoryItemValue { get; set; }
 
-        public string SubcategoryName { get; private set; }
+        public string SubcategoryName { get; set; }
 
         public Category() { }
 
         public Category(string categoryName, string subcategoryName)
         {
-            if (string.IsNullOrWhiteSpace(categoryName))
-            {
-                throw new InvalidCategoryNameException(categoryName);
-            }
-
             this.CategoryItemValue = new CategoryItem { CategoryName = categoryName };
             this.SubcategoryName = subcategoryName;
         }

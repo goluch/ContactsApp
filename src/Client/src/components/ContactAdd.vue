@@ -8,7 +8,7 @@
             </div>
             <div class="mb-3">
                 <label>Surname:</label>
-                <input type="text" class="form-control" v-model="newContact.surnameForm" required>
+                <input type="text" class="form-control" v-model="newContact.surname" required>
             </div>
             <div class="mb-3">
                 <label>Email:</label>
@@ -20,7 +20,7 @@
             </div>
             <div class="mb-3">
                 <label>Category:</label>
-                <select class="form-control" v-model="newContact.category.categoryName" @change="adjustSubcategory" required>
+                <select class="form-control" v-model="newContact.category.categoryItemValue.categoryName" @change="adjustSubcategory" required>
                     <option v-for="item in this.$store.state.suportedCategoriesList" :value="item.allowedSubcategories">{{ item.categoryName }}</option>
                 </select>
             </div>
@@ -55,8 +55,6 @@
             showSubcategoryInput: false,
             showSubcategorySelect: false,
             newContact: new Contact,
-            categories: [],
-            selectedCategory: null,
         };
     },
     methods: {

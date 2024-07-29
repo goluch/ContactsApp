@@ -7,7 +7,7 @@ namespace Application.Contacts.Commands.CreateContact
 {
     public record CreateContactCommand : IRequest<int>
     {
-        public int Id { get; set; }
+        public int Id { get; init; }
         public string Forename { get; init; }
         public string Surname { get; init; }
         public string Email { get; init; }

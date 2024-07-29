@@ -1,6 +1,5 @@
 ﻿using AutoMapper;
 using Domain.Entities;
-using Domain.ValueObjects;
 
 namespace Application.Contacts.Queries.Get
 {
@@ -10,7 +9,7 @@ namespace Application.Contacts.Queries.Get
         public string Surname { get; init; }
         public string Email { get; init; }
         public string Password { get; init; }
-        public Category Category { get; init; }
+        public CategoryDto Category { get; init; }
         public string PhoneNumber { get; init; }
         public DateOnly BirthDate { get; init; }
 
