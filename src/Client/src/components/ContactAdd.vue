@@ -20,8 +20,8 @@
             </div>
             <div class="mb-3">
                 <label>Category:</label>
-                <select class="form-control" v-model="newContact.category.categoryItemValue.categoryName" @change="adjustSubcategory" required>
-                    <option v-for="item in this.$store.state.suportedCategoriesList" :value="item.allowedSubcategories">{{ item.categoryName }}</option>
+                <select class="form-control" v-model="newContact.category.categoryItemValue" @change="adjustSubcategory" required>
+                    <option v-for="item in this.$store.state.suportedCategoriesList" :value="item">{{ item.categoryName }}</option>
                 </select>
             </div>
             <div class="mb-3">
@@ -63,7 +63,7 @@
             return false;
         },
         adjustSubcategory(e) {
-            switch (e.target.value) 
+            switch (this.newContact.category.categoryItemValue.allowedSubcategories) 
             {
                  case 'Any':
                     this.showSubcategoryLabel = true;

@@ -5,7 +5,7 @@ namespace Domain.ValueObjects
 {
     public class CategoryItem : BaseValueObject<int>
     {
-        private string? _categoryName;
+        private string _categoryName;
         public string CategoryName {
             get
             {
