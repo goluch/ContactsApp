@@ -5,12 +5,16 @@ namespace Domain.ValueObjects
 {
     public class CategoryItem : BaseValueObject<int>
     {
+        private string? _categoryName;
         public string CategoryName {
-            get => CategoryName;
-            init
+            get
+            {
+                return _categoryName;
+            }
+            set
             {
                 ValidateCategoryName(value);
-                CategoryName = value;
+                _categoryName = value;
             }
         }
 
