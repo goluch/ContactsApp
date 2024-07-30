@@ -87,8 +87,11 @@
             this.$store.commit('setAllDisplaysNull');
             fetch('CreateContact', {
                 method: 'POST',
-                headers: {'Content-Type':'application/json'},
-                body: JSON.stringify(this.newContact), 
+                headers: {
+                    'Content-Type': 'application/json',
+                    Authorization: this.$store.state.token
+                },
+                    body: JSON.stringify(this.newContact), 
                 })
                 .then(response => {
                 this.$store.commit('setLoading', false);

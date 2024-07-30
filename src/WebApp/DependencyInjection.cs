@@ -1,7 +1,9 @@
 ﻿using Application.Common.Interfaces;
 using Azure.Identity;
+using DocumentFormat.OpenXml.EMMA;
 using Infrastructure.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.OpenApi.Models;
 using System.Reflection;
 using WebApp.Endpoints;
 using WebApp.Infrastructure;
@@ -36,7 +38,6 @@ namespace Microsoft.Extensions.DependencyInjection
                 options.SuppressModelStateInvalidFilter = true);
 
             services.AddEndpointsApiExplorer();
-
             return services;
         }
 

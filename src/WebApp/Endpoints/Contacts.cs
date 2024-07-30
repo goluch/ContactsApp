@@ -18,14 +18,15 @@ namespace WebApp.Endpoints
         public override void Map(WebApplication app)
         {
             app.MapGroup(this)
-                //.RequireAuthorization()
                 //.MapGet(GetContactsWithPagination)
                 .MapGet(GetContacts)
                 .MapGet(GetCategories)
-                .MapGet(GetBusinessSubategories)
+                .MapGet(GetBusinessSubategories);
+            app.MapGroup(this)
+                .RequireAuthorization()
                 .MapPost(CreateContact)
                 .MapPut(UpdateContact, "{id}")
-                .MapDelete(DeleteContact, "{id}"); ;
+                .MapDelete(DeleteContact, "{id}");
         }
 
         public Task<PaginatedList<ContactDto>> GetContactsWithPagination(ISender sender, [AsParameters] GetContactsWithPaginationQuery query)
