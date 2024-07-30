@@ -27,7 +27,10 @@
                 this.$store.commit('setAllDisplaysNull');
                 fetch(`DeleteContact/${this.contact.id}`, {
                     method: 'DELETE',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${this.$store.state.token}`
+                    },
                 })
                     .then(response => {
                         this.$store.commit('setLoading', false);

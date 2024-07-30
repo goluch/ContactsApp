@@ -89,7 +89,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: this.$store.state.token
+                    Authorization: `Bearer ${this.$store.state.token}`
                 },
                     body: JSON.stringify(this.newContact), 
                 })

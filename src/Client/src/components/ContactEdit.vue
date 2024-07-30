@@ -95,7 +95,10 @@
                 this.$store.commit('setAllDisplaysNull');
                 fetch(`UpdateContact/${this.contact.id}`, {
                     method: 'PUT',
-                    headers: { 'Content-Type': 'application/json' },
+                    headers: {
+                        'Content-Type': 'application/json',
+                        Authorization: `Bearer ${this.$store.state.token}`
+                    },
                     body: JSON.stringify(this.contact),
                 })
                 .then(response => {
