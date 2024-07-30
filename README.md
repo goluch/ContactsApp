@@ -51,6 +51,10 @@ Wykorzystane biblioteki (backend):
 * Microsoft.Extensions.Configuration.Abstractions
 * Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore
 * Swashbuckle.AspNetCore
+* DocumentFormat.OpenXml
 
-Wykorzystane frameworki (frontend):
-* Vue.js
+Wykorzystane frameworki i wtyczki (frontend):
+* Vue 3 + Typescript + Vite
+* Vuex
+* VueGoodTable
+* Bootstrap
