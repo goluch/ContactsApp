@@ -1,6 +1,6 @@
 <template>
     <div v-if="this.$store.state.contactEdit" class="content">
-        <h3>Add contact</h3>
+        <h3>Edit contact</h3>
         <form @submit.prevent="editContact">
             <div class="mb-3">
                 <label>Forename:</label>
@@ -40,10 +40,16 @@
                 <label>Birth Date:</label>
                 <input type="date" class="form-control" v-model="contact.birthDate" required>
             </div>
-            <button type="submit" class="btn btn-primary">Add Contact</button>
+            <button type="submit" class="btn btn-primary">Save Changes</button>
         </form>
     </div>
 </template>
+
+<script setup lang="ts">
+    const props = defineProps({
+        contact: Contact
+    })
+</script>
 
 <script lang="ts">
     import { Contact, Category } from "../common/types";
@@ -54,7 +60,6 @@
                 showSubcategoryLabel: false,
                 showSubcategoryInput: false,
                 showSubcategorySelect: false,
-                newContact: new Contact,
             };
         },
         updated() {
@@ -62,7 +67,6 @@
             this.adjustSubcategory(this.contact.category.categoryItemValue.allowedSubcategories);
           }
         },
-        props: ['contact'],
         methods: {
             isSubcategorySelectDisabled() {
                 return false;
@@ -89,19 +93,19 @@
             editContact() {
                 this.$store.commit('setLoading', true);
                 this.$store.commit('setAllDisplaysNull');
-                fetch('CreateContact', {
-                    method: 'POST',
+                fetch(`UpdateContact/${this.contact.id}`, {
+                    method: 'PUT',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(this.newContact),
+                    body: JSON.stringify(this.contact),
                 })
                 .then(response => {
                     this.$store.commit('setLoading', false);
                     if (!response.ok) {
-                        this.$store.commit('setMsg', 'Failed to add contact.');
+                        this.$store.commit('setMsg', 'Failed to save contact changes.');
                         return;
                     }
                     else {
-                        this.$store.commit('setMsg', "Contact added successfully.");
+                        this.$store.commit('setMsg', "Contact changes saved successfully.");
                         return;
                     }
                 })

@@ -31,7 +31,7 @@ if (!fs.existsSync(certFilePath) || !fs.existsSync(keyFilePath)) {
 }
 
 const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_HTTPS_PORT}` :
-    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:32773';
+    env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'https://localhost:32775';
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -64,6 +64,14 @@ export default defineConfig({
                 secure: false
             },
             '^/CreateContact': {
+                target: target + "/api/Contacts",
+                secure: false
+            },
+            '^/UpdateContact': {
+                target: target + "/api/Contacts",
+                secure: false
+            },
+            '^/DeleteContact': {
                 target: target + "/api/Contacts",
                 secure: false
             },
