@@ -5,6 +5,7 @@ namespace Application.Contacts.Queries.Get
 {
     public class ContactDto
     {
+        public string Id { get; init; }
         public string Forename { get; init; }
         public string Surname { get; init; }
         public string Email { get; init; }

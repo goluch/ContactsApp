@@ -22,7 +22,6 @@ export class Category {
 }
 
 export class Contact {
-    id: number
     forename: string
     surname: string
     email: string
