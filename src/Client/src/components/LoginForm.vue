@@ -63,7 +63,6 @@
                 })
                 .then(json => {
                     this.$store.state.token = json['accessToken'];
-                    this.$store.commit('addMsg', ', Bearer token: ' + JSON.stringify(this.$store.state.token));
                 })
             }
         }
